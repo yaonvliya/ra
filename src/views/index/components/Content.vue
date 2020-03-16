@@ -1,13 +1,13 @@
 <template>
-    
+    <div>主体</div>
 </template>
 
 <script>
     export default {
-        name: "content"
+        name: "Content"
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

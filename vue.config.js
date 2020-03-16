@@ -6,7 +6,7 @@ function resolve (dir) {
 module.exports = {
   assetsDir: 'assets',
   publicPath: './',
-  lintOnSave: true, // 是否开启编译时是否不符合eslint提示
+  lintOnSave: false, // 是否开启编译时是否不符合eslint提示
   devServer: {
     host: '0.0.0.0',
     port: 8000,
@@ -17,7 +17,7 @@ module.exports = {
         target: 'http://127.0.0.1:8080',
         changeOrigin: true
       }
-    }
+    },
   },
   // 配置别名
   chainWebpack: (config)=>{

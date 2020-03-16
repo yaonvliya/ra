@@ -8,7 +8,7 @@ html {
   font-family: Arial, "Microsoft YaHei",'微软雅黑','Avenir', Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: -moz-hidden-unscrollable;
+  overflow: hidden;
 }
 ul, ol, menu {
   list-style: none
@@ -132,8 +132,8 @@ i {
 .xlr-yt {
   display: flex;
   display: -webkit-flex;
-  align-items: start;
-  -webkit-align-items: start;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
@@ -141,8 +141,8 @@ i {
 .xl-ytb {
   display: flex;
   display: -webkit-flex;
-  align-items: start;
-  -webkit-align-items: start;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
