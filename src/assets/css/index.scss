@@ -1,0 +1,210 @@
+/*整体样式*/
+html,body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td, menu {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Arial, "Microsoft YaHei",'微软雅黑','Avenir', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: -moz-hidden-unscrollable;
+}
+ul, ol, menu {
+  list-style: none
+}
+
+fieldset, img {
+  border: none
+}
+
+img, object, select, input, textarea, button {
+  vertical-align: middle
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+i {
+  font-style: normal;
+}
+
+/*flex排列*/
+.xl {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+.xr {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.yc {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+.xr-yc {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.xr-yt {
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.xc-yc {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.xl-yb {
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+.xr-yb {
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.xl-yc {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+.xlr-yc {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.xlr-yt {
+  display: flex;
+  display: -webkit-flex;
+  align-items: start;
+  -webkit-align-items: start;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.xl-ytb {
+  display: flex;
+  display: -webkit-flex;
+  align-items: start;
+  -webkit-align-items: start;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+
+.xl-col-yc {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.xl-col-yb {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+}
+
+.xr-col-yc {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-content: center;
+  -webkit-align-content: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.xc-col-yc {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+
+.xc-tb {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column-reverse;
+}
+
+.xc-wrap {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+}
+
+.xl-wrap {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+}
