@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="imagetoolbar" content="no">
+    <title>suzhou_map_all_OSM EPSG:4326_suzhou_map_all_OSM image/png</title>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: .8em;
+        }
+
+        body {
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #map {
+            width: 85%;
+            height: 85%;
+            border: 0px;
+            padding: 0px;
+        }
+    </style>
+    <script src="http://192.168.5.56:8080/geowebcache/openlayers/OpenLayers.js"></script>
+    <script type="text/javascript">
+        var map, demolayer, params;
+        filteredParams = {};
+
+        // sets the chosen modifiable parameter
+        function setParam(name, value) {
+            var newParams = {};
+            newParams[name] = value;
+            demolayer.mergeNewParams(newParams);
+            filteredParams[name] = value;
+        }
+
+        // OpenLayers.DOTS_PER_INCH = 96.0;
+        // OpenLayers.Util.onImageLoadErrorColor = 'transparent';
+
+        function init() {
+            var mapOptions = {
+                resolutions: [0.0016656227040811962, 7.138383017490841E-4, 4.283029810494504E-4, 2.97432625728785E-4, 1.9035688046642243E-4, 9.517844023321122E-5, 4.758922011660561E-5, 2.3794610058302804E-5, 9.51784402332112E-6, 4.75892201166056E-6],
+                projection: new OpenLayers.Projection('EPSG:4326'),
+                // maxExtent: new OpenLayers.Bounds(-400.0, 30.738108996014887, 121.91288058761836, 399.9999999999998),
+                units: "unknown",
+                controls: []
+            };
+            map = new OpenLayers.Map('map', mapOptions);
+            // map.addControl(new OpenLayers.Control.PanZoomBar({
+            //     position: new OpenLayers.Pixel(2, 15)
+            // }));
+            map.addControl(new OpenLayers.Control.Navigation());
+            // map.addControl(new OpenLayers.Control.Scale($('scale')));
+            // map.addControl(new OpenLayers.Control.MousePosition({element: $('location')}));
+            demolayer = new OpenLayers.Layer.WMS(
+                "suzhou_map_all_OSM", "http://192.168.5.56:8080/geowebcache/service/wms",
+                {layers: 'suzhou_map_all_OSM', format: 'image/png'},
+                {
+                    tileSize: new OpenLayers.Size(256, 256),
+                    tileOrigin: new OpenLayers.LonLat(-400.0, 399.9999999999998)
+                });
+            map.addLayer(demolayer);
+            map.zoomToExtent(new OpenLayers.Bounds(119.84068001499925, 30.739217519803724, 121.49551475999999, 32.151943350525116));
+
+            // map.events.register('click', map, function (e) {
+            //     document.getElementById('nodelist').innerHTML = "Loading... please wait...";
+            //     var params = {
+            //         REQUEST: "GetFeatureInfo",
+            //         EXCEPTIONS: "application/vnd.ogc.se_xml",
+            //         BBOX: map.getExtent().toBBOX(),
+            //         X: e.xy.x,
+            //         Y: e.xy.y,
+            //         INFO_FORMAT: 'text/html',
+            //         QUERY_LAYERS: map.layers[0].params.LAYERS,
+            //         FEATURE_COUNT: 50,
+            //         Layers: 'suzhou_map_all_OSM',
+            //         Srs: 'EPSG:4326',
+            //         WIDTH: map.size.w,
+            //         HEIGHT: map.size.h,
+            //         format: "image/png"
+            //     };
+            //     // Merge in filtered params
+            //     for (var p in filteredParams) {
+            //         params[p] = filteredParams[p];
+            //     }
+            //     OpenLayers.loadURL("../service/wms", params, this, setHTML, setHTML);
+            //     OpenLayers.Event.stop(e);
+            // });
+        }
+
+        function setHTML(response) {
+            document.getElementById('nodelist').innerHTML = response.responseText;
+        };
+    </script>
+</head>
+<body onload="init()">
+<div id="params"></div>
+<div id="map"></div>
+<div id="nodelist"></div>
+</body>
+</html>
+
+
+
