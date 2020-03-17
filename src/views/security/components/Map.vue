@@ -1,20 +1,23 @@
 <template>
     <div class="map">
-        安全态势地图
+        <RaMap>
+            安全态势地图
+        </RaMap>
     </div>
 </template>
 
 <script>
+    import RaMap from "../../../components/RaMap/index.vue"
+
     export default {
         name: "S-MAP",
-        data() {
-            return {
-
-            }
+        components: {
+            RaMap,
         },
-        methods: {
-
-        }
+        data() {
+            return {}
+        },
+        methods: {}
     }
 </script>
 

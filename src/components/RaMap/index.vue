@@ -69,6 +69,14 @@
                 this.selectTool = new SelectTool({map: this.map})
                 this.updateMapSize()
             },
+            /*销毁地图*/
+            destroy() {
+                if (this.myMap) {
+                    this.myMap.destroy();
+                    this.map = null;
+                    this.myMap = null;
+                }
+            },
             /*更新地图尺寸*/
             updateMapSize() {
                 let _this = this
@@ -76,6 +84,14 @@
                     _this.map.updateSize()
                 }, 500)
             },
+        },
+        mounted: function () {
+            let _this = this
+            setTimeout(function () {
+                _this.destroy();
+                _this.initMap();
+                _this.updateMapSize()
+            }, 500);
         }
     }
 </script>
@@ -85,7 +101,7 @@
         height: 100%;
         width: 100%;
     }
-    #tjmap {
+    #ra_map {
         position: relative;
         width: 100%;
         height: 100%;
