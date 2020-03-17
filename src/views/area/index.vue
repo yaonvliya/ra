@@ -1,13 +1,13 @@
 <template>
-    <div>主体</div>
+    <div>区域</div>
 </template>
 
 <script>
     export default {
-        name: "Content"
+        name: "area"
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

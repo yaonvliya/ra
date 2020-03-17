@@ -2,7 +2,9 @@
     <div class="bg">
         <Header></Header>
         <transition name="el-fade-in-linear">
-            <router-view></router-view>
+            <div class="sys-body">
+                <router-view></router-view>
+            </div>
         </transition>
     </div>
 </template>
@@ -11,25 +13,29 @@
     import Header from './components/Head'
 
     export default {
-        name:'Index',
+        name: 'MainPanel',
         components: {
             Header,
-
         },
         data() {
-            return {
-
-            }
+            return {}
         },
-        methods:{
-
-        },
+        methods: {},
     }
 </script>
 
 <style lang="scss" scoped>
     .bg {
         background-color: rgba(9, 110, 255, 0.5);
+        width: 100%;
+        height: 100%;
+
+        .sys-body {
+            width: calc(100% - 20px);
+            height: calc(100% - 60px);
+            margin: 0 auto;
+            /*background-color: #bbd8ff;*/
+        }
     }
 
     .com {
