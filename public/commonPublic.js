@@ -31,6 +31,6 @@ window.commonPublic = {
                 div1.style.top = ""
             }
         }
-    },
+    }
 
 }

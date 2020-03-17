@@ -157,5 +157,5 @@ window.datePublic = {
         let month = newDate.getMonth() + 1
         let day = newDate.getDate()
         return year + "-" + (month < 10 ? ("0" + month) : month) + "-" + (day < 10 ? ("0" + day) : day)
-    },
+    }
 }

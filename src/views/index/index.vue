@@ -14,6 +14,8 @@
         },
         mounted() {
 
+        },
+        methods:{
 
         }
     }
