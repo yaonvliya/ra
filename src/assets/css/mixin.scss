@@ -1,13 +1,5 @@
 /* define mixin */
 
-/* flex
- * @include flex(center, center);
- */
-@mixin flex($justifyContent: flex-start, $alignItems: flex-start) {
-  display: flex;
-  align-items: $alignItems;
-  justify-content: $justifyContent;
-}
 
 /* ellipsis
  * @include ellipsis;
@@ -17,5 +9,34 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+
+/* flex
+ * @include flex(center, center);
+ */
+@mixin flex-xcyc($justifyContent: flex-start, $alignItems: flex-start) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin flex-xlyc($justifyContent: flex-start, $alignItems: center) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin flex-xlryc($justifyContent: space-between, $alignItems: center) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+@mixin flex-xryc($justifyContent: flex-end, $alignItems: center) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
 
 

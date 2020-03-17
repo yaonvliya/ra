@@ -3,13 +3,15 @@ const modeUrlObj = {
   // 生产环境-build
   'production': {
     baseURL: 'production',
-    mapServiceUrl:"",
+    mapServiceUrl:"http://50.73.141.76:8080",
+    layerType:"sz_loc",
     authBaseURL: ''
   },
   // 开发环境-dev
   'development': {
     baseURL: 'development',
-    mapServiceUrl:"",
+    mapServiceUrl:"http://192.168.5.56:8080",
+    layerType:"sz_online",
     authBaseURL: ''
   },
   // 测试环境-test
