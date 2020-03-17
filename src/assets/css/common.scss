@@ -1,15 +1,21 @@
 /*整体样式*/
-html,body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td, menu {
+html, body, ul, ol, dl, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, button, textarea, p, blockquote, table, th, td, menu {
   margin: 0;
   padding: 0;
 }
 
+html, body, #app {
+  width: 100%;
+  height: 100%;
+}
+
 html {
-  font-family: Arial, "Microsoft YaHei",'微软雅黑','Avenir', Helvetica, sans-serif;
+  font-family: Arial, "Microsoft YaHei", '微软雅黑', 'Avenir', Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
+
 ul, ol, menu {
   list-style: none
 }

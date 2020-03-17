@@ -14,7 +14,7 @@
 /* flex
  * @include flex(center, center);
  */
-@mixin flex-xcyc($justifyContent: flex-start, $alignItems: flex-start) {
+@mixin flex-xcyc($justifyContent: center, $alignItems: center) {
   display: flex;
   align-items: $alignItems;
   justify-content: $justifyContent;
