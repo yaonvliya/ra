@@ -1,18 +1,23 @@
 // 一些全局的config配置
 const modeUrlObj = {
-  // 生产环境
+  // 生产环境-build
   'production': {
-    baseURL: 'http://xxxx:9091/pro/',
+    baseURL: 'production',
+    mapServiceUrl:"http://50.73.141.76:8080",
+    layerType:"sz_loc",
     authBaseURL: ''
   },
-  // 开发环境
+  // 开发环境-dev
   'development': {
-    baseURL: 'http://xxxx:9091/dev/',
+    baseURL: 'development',
+    mapServiceUrl:"http://192.168.5.56:8080",
+    layerType:"sz_online",
     authBaseURL: ''
   },
-  // 测试环境
+  // 测试环境-test
   'test': {
-    baseURL: 'http://xxxxx:9091/test/',
+    baseURL: 'test',
+    mapServiceUrl:"",
     authBaseURL: ''
   }
 }
