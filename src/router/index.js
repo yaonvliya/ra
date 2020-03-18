@@ -6,9 +6,10 @@ Vue.use(Router)
 export const router = new Router({
     routes: [
         {
-            path: '/security',
+            path: '/',
+            redirect: 'security',
             name: 'index',
-            component: resolve => require(['../views/main'], resolve),
+            component:  () => import('../views/main'),
             meta: {title: '首页'},
             children: [
                 {
@@ -20,7 +21,7 @@ export const router = new Router({
                 {
                     path: '/security',
                     name: 'security',
-                    component: resolve => require(['../views/security'], resolve),
+                    component:  () => import('../views/security'),
                     meta: {title: '安全态势'},
                 },
                 {

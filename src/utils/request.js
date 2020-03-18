@@ -7,33 +7,41 @@ const service = axios.create({
     timeout: 10000 // 请求超时时间
 })
 
-// request 拦截器
-service.interceptors.request.use(
-    config => {
-        // 这里可以自定义一些config 配置
+let ajaxMethod = ['get', 'post', 'delete', 'put'];
+let api = {};
 
-        return config
-    },
-    error => {
-        //  这里处理一些请求出错的情况
+ajaxMethod.forEach(method => {
+    //数组取值的两种方式
+    api[method] = function(uri, data, type) {
+        return new Promise(function(resolve, reject) {
+            service[method](uri, data)
+                .then(response => {
+                    if (response.data.code == 0||response.data.status == 200) {
+                        resolve(response.data);
+                    } else {
+                        reject(response.data);
+                    }
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    };
+});
 
-        Promise.reject(error)
-    }
-)
+api.getWithHeaders = function(url, token) {
+    return axios
+        .get(url, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then(res => {
+            return res;
+        })
+        .catch(e => {
+            return 'error';
+        });
+};
 
-// response 拦截器
-service.interceptors.response.use(
-    response => {
-        const res = response.data
-        // 这里处理一些response 正常放回时的逻辑
-
-        return res
-    },
-    error => {
-        // 这里处理一些response 出错时的逻辑
-
-        return Promise.reject(error)
-    }
-)
-
-export default service
+export default api

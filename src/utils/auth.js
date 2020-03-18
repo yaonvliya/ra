@@ -28,6 +28,14 @@ export function getSessionStorage (key) {
 /*
 * 获取getToken
 * */
+// export function getToken() {
+//     const user = JSON.parse(
+//         window.sessionStorage.getItem("trouble_investigation_user")
+//     );
+//     console.info((user && user.token) || "", '(user && user.token) || "";');
+//     return (user && user.token) || "";
+// }
+
 export function getToken () {
     return Cookies.get(TokenKey)
 }
