@@ -26,13 +26,15 @@
 
 <style lang="scss" scoped>
     .bg {
-        background-color: rgba(9, 110, 255, 0.5);
+        background-color: #ffffff;
+        background-image: url("../../assets/images/index_bg.png");
+        background-size: 100% 100%;
         width: 100%;
         height: 100%;
 
         .sys-body {
-            width: calc(100% - 20px);
-            height: calc(100% - 60px);
+            width: calc(100% - 34px);
+            height: calc(100% - 80px);
             margin: 0 auto;
             /*background-color: #bbd8ff;*/
         }

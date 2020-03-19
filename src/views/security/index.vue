@@ -147,9 +147,9 @@
             z-index: 50;
 
             > .el-col {
-                background-color: rgba(255, 255, 255, 0.9);
-                border-radius: 3px;
-                box-shadow: 0 0 5px #848484;
+                background-color: #FFFFFF;
+                border-radius: 2px;
+                box-shadow: 0 3px 6px #C2C1D3;
                 transition: all 0.3s linear;
             }
         }
@@ -157,17 +157,17 @@
         .s-left {
             top: 0;
             left: 0;
-            width: 20%;
+            width: 21%;
             height: 100%;
 
             .col-top {
                 width: 100%;
-                height: 34.67%;
+                height: 35.67%;
             }
 
             .col-middle {
                 width: 100%;
-                height: calc(32% - 10px);
+                height: calc(31% - 10px);
                 margin-top: 10px;
             }
 
@@ -181,7 +181,7 @@
         .s-right {
             top: 0;
             right: 0;
-            width: 20%;
+            width: 21%;
             height: 100%;
 
 
@@ -204,9 +204,9 @@
         }
 
         .s-bottom {
-            left: 20%;
+            left: 21%;
             bottom: 0;
-            width: calc(60% - 20px);
+            width: calc(58% - 20px);
             height: calc(33.33% - 10px);
             margin-left: 10px;
 
@@ -218,16 +218,16 @@
 
         .col-head-a {
             width: 100%;
-            height: 35px;
-            padding: 0 10px 0 0;
-            border-bottom: 1px solid #eee;
+            height: 49px;
+            padding: 0 22px 0 0;
+            border-bottom: 1px solid #ECECEC;
             @include flex-xlyc();
         }
 
         .col-head {
             width: 100%;
-            height: 35px;
-            padding: 0 10px 0 0;
+            height: 49px;
+            padding: 0 22px 0 0;
             border-bottom: 1px solid #eee;
             @include flex-xlryc();
 
@@ -237,14 +237,16 @@
         }
 
         .title-block {
-            width: 3px;
-            height: 20px;
-            background-color: #652BF5;
+            width: 4px;
+            height: 25px;
+            background-image: linear-gradient(to bottom left, #679CF6, #4072EE);
+            border-radius: 0px 5px 5px 0px;
         }
 
         .title {
-            font-size: 13px;
-            padding: 0 0 0 10px;
+            font-size: 16px;
+            padding: 0 0 0 14px;
+            font-size: medium;
         }
 
         .title-a {

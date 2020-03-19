@@ -5,15 +5,16 @@
             <p class="title">XX市道路交通安全分析预警系统</p>
         </el-col>
         <el-col :span="12" class="col">
-            <img :src="police" class="police"/>
-            <p class="police-name">刘xx</p>
-            <p class="menu" @mouseover="miniModules=true">
-                <router-link to="/modules">安全态势<i class="el-icon-caret-bottom"></i></router-link>
-            </p>
+            <div class="menu">
+                <p class="module-now">{{nowModule}}</p>
+                <img :src="home" @mouseover="miniModules=true">
+                <!--<router-link to="/modules"><img :src="home" @mouseover="miniModules=true"></router-link>-->
+            </div>
 
             <el-collapse-transition>
                 <div class="miniM" @mouseleave="miniModules=false" v-show="miniModules">
-                    <el-col v-for="(item,index) in modules" :key="index" class="module-name" :class="i == index ?'onThisM':''" @click.native="onModules(index,item.to)">
+                    <el-col v-for="(item,index) in modules" :key="index" class="module-name"
+                            :class="i == index ?'onThisM':''" @click.native="onModules(index,item.to)">
                         <img class="module-icon" :src="item.icon"/>{{item.name}}
                     </el-col>
                 </div>
@@ -24,16 +25,16 @@
 
 <script>
     import logo from '@/assets/images/logo.png';
-    import police from '@/assets/images/police.jpg';
+    import home from '@/assets/images/home.png';
 
     export default {
         name: "Head",
         data() {
             return {
-                logo,//标题图标
-                police,//头像
+                logo,//警标
+                home,//home键
                 miniModules: false,//小型模块菜单显示
-                i:0,//小型模块菜单选中
+                i: 0,//小型模块菜单选中
                 modules: [//小型模块菜单
                     {name: "安全态势", to: "/security", icon: ""},
                     {name: "区域安全管理", to: "/area", icon: ""},
@@ -45,13 +46,16 @@
                     {name: "报表报告", to: "", icon: ""},
                     {name: "预警设置", to: "", icon: ""},
                     {name: "数据管理", to: "", icon: ""},
-                ]
+                    {name: "用户中心", to: "/modules", icon: ""},
+                ],
+                nowModule: "安全态势",//当前选中的模块名称
             }
         },
         methods: {
-            onModules(index,path) {
+            onModules(index, path) {
                 this.miniModules = false
                 this.i = index
+                this.nowModule = this.modules[index].name
                 this.$router.push({path: path});
             }
         }
@@ -60,7 +64,7 @@
 
 <style lang="scss" scoped>
     .sys-head {
-        height: 50px;
+        height: 64px;
         width: 100%;
 
         .col:nth-child(1) {
@@ -72,12 +76,14 @@
         }
 
         .logo {
-            height: 30px;
-            margin: 0 10px;
+            height: 40px;
+            margin: 0 7px 0 25px;
         }
 
         .title {
-            font-size: 16px;
+            font-size: 26px;
+            color: #fff;
+            text-shadow: 1px 1px 3px #23449D;;
         }
 
         .police {
@@ -96,41 +102,64 @@
         }
 
         .menu {
-            margin-right: 10px;
-            cursor: pointer;
+            min-width: 177px;
+            height: 38px;
+            border-radius: 200px;
+            margin-right: 17px;
+            background-color: rgba(26, 106, 206, 0.5);
+            @include flex-xlyc();
 
-            &:hover {
-                color: #181e8f;
+            .module-now {
+                color: #FFFFFF;
+                font-size: 18px;
+                width: calc(100% - 46px);
+                text-align: center;
+            }
+
+            img {
+                width: 46px;
+                height: 46px;
             }
         }
 
         .miniM {
             position: absolute;
             z-index: 99;
-            top: 40px;
-            right: 10px;
-            padding: 10px 0 !important;
-            max-width: 170px;
+            top: 57px;
+            right: 17px;
+            padding: 13px 0 !important;
+            width: 180px;
             background: #ffffff;
-            box-shadow: 0px 0 5px rgba(60, 60, 63, 0.7);
+            box-shadow: 0px 3px 6px rgba(194, 193, 211, 0.73);
+            border-radius: 4px;
 
             .module-name {
-                font-size: 13px;
-                line-height: 30px;
+                font-size: 14px;
+                line-height: 40px;
                 padding: 0 10px;
+                color: #4B5774;
                 cursor: pointer;
                 transition: all 0.1s linear;
                 @include flex-xlyc();
 
                 &:hover {
-                    background-color: #3c7eff;
+                    background-color: #3397EA;
                     color: #ffffff;
                 }
             }
 
-            .onThisM{
-                background-color: #3c7eff;
-                color: #ffffff;
+            .module-name:nth-child(1) {
+                border-top: 1px dashed #F5F5F5;
+            }
+
+            .module-name:last-child {
+                border-bottom: 1px dashed #F5F5F5;
+            }
+
+
+            .onThisM {
+                background-color: #3397EA;
+                color: #ffffff !important;
             }
 
             .module-icon {
