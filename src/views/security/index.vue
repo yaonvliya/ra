@@ -86,7 +86,7 @@
 <script>
     import $ from 'jquery'
     import sMap from './components/Map'
-    // import securityMethods from 'src/views/security/security-methods.js'
+    import securityMethods from './security-methods.js'
 
     export default {
         name: "security",
@@ -132,6 +132,7 @@
         },
         mounted() {
             $(".tab-line").css("transform", "translateX(15px)")
+            securityMethods.search()
         }
     }
 </script>

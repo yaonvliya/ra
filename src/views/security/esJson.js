@@ -1,4 +1,4 @@
-var ESJson = {
+const esJson = {
     /*事故概况-一般事故、简易事故、快撤事故*/
     sggk1: (startTime, endTime) => {
         return {
@@ -169,3 +169,4 @@ var ESJson = {
         }
     },
 }
+export default esJson

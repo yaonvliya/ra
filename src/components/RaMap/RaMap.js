@@ -1,4 +1,4 @@
-var RaMap = {
+const RaMap = {
     /*rgb处理*/
     colorRgb:(hex)=>{
         let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
