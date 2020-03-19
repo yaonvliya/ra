@@ -1,7 +1,7 @@
 const esJson = {
     /*查询条件*/
     searchParam: (startTime, endTime) => {
-        const organizationNumber = localStorage.setItem('v3_organizationNo', 'organizationNumber')
+        const organizationNumber = localStorage.getItem('v3_organizationNumber')
         let param = [
             {
                 "range": {

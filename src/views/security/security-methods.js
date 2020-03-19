@@ -10,6 +10,7 @@ import esJson from './esJson.js'
 var securityMethods = {
     search(_this) {
         localStorage.setItem('v3_userNumber', '000000');
+        localStorage.setItem('v3_organizationNumber', '320500');
         // securityMethods.getAccBasic1(_this)
         securityMethods.getAccTrend_hour(_this)
     },
