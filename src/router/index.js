@@ -9,7 +9,7 @@ export const router = new Router({
             path: '/',
             redirect: 'security',
             name: 'index',
-            component:  () => import('../views/main'),
+            component: () => import('../views/main'),
             meta: {title: '首页'},
             children: [
                 {
@@ -21,7 +21,7 @@ export const router = new Router({
                 {
                     path: '/security',
                     name: 'security',
-                    component:  () => import('../views/security'),
+                    component: () => import('../views/security'),
                     meta: {title: '安全态势'},
                 },
                 {
@@ -29,6 +29,14 @@ export const router = new Router({
                     name: 'area',
                     component: resolve => require(['../views/area'], resolve),
                     meta: {title: '区域安全管理'},
+                    children: [
+                        {
+                            path: '/area',
+                            name: 'area',
+                            component: resolve => require(['../views/area'], resolve),
+                            meta: {title: '区域安全管理事故分析'},
+                        },
+                    ]
                 },
                 {
                     path: '/road',
