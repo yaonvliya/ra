@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <!--地图-->
-        <s-map></s-map>
+        <RaMap></RaMap>
         <!--左侧-->
         <el-row class="s-left">
             <el-col class="col-top">
@@ -45,7 +45,7 @@
                         <el-radio v-model="bottomRadio" label="2">时段</el-radio>
                         <el-radio v-model="bottomRadio" label="3">星期</el-radio>
                     </div>
-                    <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}"></div>
+                    <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}"> 1 </div>
                 </el-col>
             </el-col>
         </el-row>
@@ -85,13 +85,13 @@
 
 <script>
     import $ from 'jquery'
-    import sMap from './components/Map'
+    import RaMap from "components/RaMap/index.vue"
     import securityMethods from './security-methods.js'
 
     export default {
         name: "security",
         components: {
-            sMap,
+            RaMap,
         },
         data() {
             return {
@@ -132,7 +132,7 @@
         },
         mounted() {
             $(".tab-line").css("transform", "translateX(15px)")
-            securityMethods.search()
+            securityMethods.search(this)
         }
     }
 </script>

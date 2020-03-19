@@ -81,6 +81,11 @@
                     this.myMap = null;
                 }
             },
+            /*切换底图*/
+            changeBaseLayer(){
+                // let layer = this.myMap.baseLys["sz_online"]
+                // layer.setVisible(false)
+            },
             /*加载图层-系统默认 业务serviceLayer、操作炳operateLayer、标注labelLayer、辅助supLayer*/
             initLayers() {
                 let colorFillList = [[255, 0, 0], [153, 0, 0], [102, 0, 0]]
