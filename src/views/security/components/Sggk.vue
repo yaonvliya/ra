@@ -11,7 +11,7 @@
                     <div class="gk-total-line-a"></div>
                     <div class="gk-total-right">
                         <el-col class="gk-total-p-1">事故总数</el-col>
-                        <el-col class="gk-total-p-2 gk-sg-p">256<span>起</span></el-col>
+                        <el-col class="gk-total-p-2 gk-sg-p">{{sgzs}}<span>起</span></el-col>
                         <el-col class="gk-total-p-1">同比
                             <i class="el-icon-caret-top num-top"></i>
                             <span class="num-top">{{sgzs_tb}}%</span>
@@ -58,7 +58,7 @@
                     <div class="gk-total-line-b"></div>
                     <div class="gk-total-right">
                         <el-col class="gk-total-p-1">伤亡人数</el-col>
-                        <el-col class="gk-total-p-3 gk-sw-p">132<span>人</span></el-col>
+                        <el-col class="gk-total-p-3 gk-sw-p">{{ssswrs}}<span>人</span></el-col>
                         <el-col class="gk-total-p-1">同比
                             <i class="el-icon-caret-top num-top"></i>
                             <span class="num-top">{{sgzs_tb}}%</span>
@@ -96,24 +96,73 @@
 </template>
 
 <script>
+    import esApi from '../../../api/esApi.js'
+    import esJson from '../esJson.js'
+
     export default {
         name: "Sggk",
         data() {
             return {
-                sgzs_tb: 60,//事故总数同比
-                sgzs_hb: 58,//事故总数环比
-                swrs_tb: 53,//伤亡人数同比
-                swrs_hb: 42,//伤亡人数环比
-                ybsg: 2323,//一般事故
-                jysg: 2323,//简易事故
-                kcsg: 2323,//快撤事故
-                swrs: 2323,//死亡人数
-                ssrs: 2323,//受伤人数
-                ybsg_per: 35,//一般事故同比
-                jysg_per: 42,//简易事故同比
-                kcsg_per: 60,//快撤事故同比
-                swrs_per: 45,//死亡人数同比
-                ssrs_per: 31,//受伤人数同比
+                sgzs: 0,//事故总数
+                ssswrs: 0,//伤亡人数
+                sgzs_tb: "-",//事故总数同比
+                sgzs_hb: "-",//事故总数环比
+                swrs_tb: "-",//伤亡人数同比
+                swrs_hb: "-",//伤亡人数环比
+                ybsg: 0,//一般事故
+                jysg: 0,//简易事故
+                kcsg: 0,//快撤事故
+                swrs: 0,//死亡人数
+                ssrs: 0,//受伤人数
+                ybsg_per: 0,//一般事故同比
+                jysg_per: 0,//简易事故同比
+                kcsg_per: 0,//快撤事故同比
+                swrs_per: 0,//死亡人数同比
+                ssrs_per: 0,//受伤人数同比
+            }
+        },
+        methods: {
+            /*事故概况-事故总数、一般、简易、快撤*/
+            getAccBasic1(time, type) {
+                this.ybsg = 0//一般事故
+                this.swrs = 0//死亡人数
+                this.jysg = 0//简易事故
+                this.ssrs = 0//受伤人数
+                this.kcsg = 0//快撤事故
+                this.sgzs_tb = "-"//事故总数同比
+                this.sgzs_hb = "-"//事故总数环比
+                this.swrs_tb = "-"//伤亡人数同比
+                this.swrs_hb = "-"//伤亡人数环比
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk1(time, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]["model"]["buckets"]
+                    this.sgzs = res["data"]["hits"]["total"]
+                    for (let i = 0; i < result.length; i++) {
+                        if (result[i]["key"] == "简易事故") {
+                            this.jysg = result[i]["doc_count"]
+                        } else if (result[i]["key"] == "一般事故") {
+                            this.ybsg = result[i]["doc_count"]
+                        } else {
+                            this.kcsg = result[i]["doc_count"]
+                        }
+                    }
+                })
+            },
+            /*事故总数-伤亡人数*/
+            getAccBasic2(time, type) {
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk2(time, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]
+                    this.swrs = result["swrs"]["value"] / 1
+                    this.ssrs = result["ssrs"]["value"] / 1
+                    this.ssswrs = this.swrs + this.ssrs
+                })
             }
         }
     }

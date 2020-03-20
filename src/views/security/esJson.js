@@ -1,14 +1,11 @@
 const esJson = {
     /*查询条件*/
-    searchParam: (startTime, endTime) => {
+    searchParam: (time, type) => {
         const organizationNumber = localStorage.getItem('v3_organizationNumber')
         let param = [
             {
-                "range": {
-                    "sgfssj": {
-                        "gte": startTime,
-                        "lte": endTime
-                    }
+                "term": {
+                    "sj_ym": time
                 }
             },
             {
@@ -27,11 +24,11 @@ const esJson = {
         return param
     },
     /*事故概况-一般事故、简易事故、快撤事故*/
-    sggk1: (startTime, endTime) => {
+    sggk1: (time, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": esJson.searchParam(time, type)
                 }
             },
             "size": 0,
@@ -49,11 +46,11 @@ const esJson = {
         }
     },
     /*事故概况-死亡人数、受伤人数*/
-    sggk2: (startTime, endTime) => {
+    sggk2: (time, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": esJson.searchParam(time, type)
                 }
             },
             "size": 0,
@@ -72,11 +69,22 @@ const esJson = {
         }
     },
     /*事故趋势-月度*/
-    sgqs_month: (startTime, endTime) => {
+    sgqs_month: (timeList, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": [
+                        {
+                            "terms": {
+                                "sj_y": timeList
+                            }
+                        },
+                        {
+                            "term": {
+                                "qlbs": "1"
+                            }
+                        }
+                    ]
                 }
             },
             "size": 0,
@@ -105,11 +113,11 @@ const esJson = {
         }
     },
     /*事故趋势-小时、星期*/
-    sgqs: (type, startTime, endTime) => {
+    sgqs: (field, time, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": esJson.searchParam(time, type)
                 }
             },
             "size": 0,
@@ -120,18 +128,18 @@ const esJson = {
                             "_count": "desc"
                         },
                         "size": 999,
-                        "field": type
+                        "field": field
                     }
                 }
             }
         }
     },
     /*区域安全*/
-    qyaq: (startTime, endTime) => {
+    qyaq: (time, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": esJson.searchParam(time, type)
                 }
             },
             "size": 0,
@@ -159,11 +167,11 @@ const esJson = {
         }
     },
     /*道路安全*/
-    dlaq: (startTime, endTime) => {
+    dlaq: (time, type) => {
         return {
             "query": {
                 "bool": {
-                    "must": esJson.searchParam(startTime, endTime)
+                    "must": esJson.searchParam(time, type)
                 }
             },
             "size": 0,
@@ -199,8 +207,8 @@ const esJson = {
                         {
                             "range": {
                                 "年月": {
-                                    "gte": "201907",
-                                    "lte": "201907"
+                                    "gte": startTime,
+                                    "lte": endTime
                                 }
                             }
                         }
@@ -212,7 +220,7 @@ const esJson = {
                 "model": {
                     "terms": {
                         "field": type,
-                        "size": 99,
+                        "size": 20,
                         "order": {
                             "a1": "desc"
                         }

@@ -28,7 +28,7 @@ var chartsParam = {
             }
         },
         grid: {
-            top: 10,
+            top: 6,
             left: 50,
             right: 30,
             bottom: 62
@@ -36,7 +36,7 @@ var chartsParam = {
         legend: {
             show: true,
             right: 15,
-            top: 5,
+            top: 0,
             textStyle: {
                 color: '#999999',
                 fontFamily: 'PingFang',
