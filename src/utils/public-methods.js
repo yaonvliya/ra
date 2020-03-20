@@ -1,4 +1,4 @@
-window.datePublic = {
+const publicMethods = {
     getDate: function () {
         let now = new Date();
         return [now.getFullYear(), now.getMonth() + 1, now.getDate(),
@@ -145,17 +145,54 @@ window.datePublic = {
         return day;
     },
     /*给定指定日期mdate，往前推days天、往后推days天 method:before、after*/
-    getBeforeDateDate: function (mdate, days,method) {
+    getBeforeDateDate: function (mdate, days, method) {
         let adate = mdate.split("-")
         let newDate = new Date(adate[0] / 1, adate[1] / 1 - 1, adate[2] / 1)
-        if(method=="after"){
+        if (method == "after") {
             newDate.setDate(newDate.getDate() + days)
-        }else{
+        } else {
             newDate.setDate(newDate.getDate() - days)
         }
         let year = newDate.getFullYear()
         let month = newDate.getMonth() + 1
         let day = newDate.getDate()
         return year + "-" + (month < 10 ? ("0" + month) : month) + "-" + (day < 10 ? ("0" + day) : day)
+    },
+
+    /*深拷贝obj、list*/
+    copyObj(obj) {
+        let resObj = JSON.parse(JSON.stringify(obj))
+        return resObj
+    },
+    log(mess) {
+        console.log(mess);
+    },
+    /*可拖动事件
+    html中@mousedown="mousedown($event,'mapDraggable')"
+    js中mousedown(e,id){
+        PublicFuc.dragMethods(e,id)
+    }*/
+    dragMethods(event, id, isBack, _this) {
+        let div1 = document.getElementById(id)
+        div1.style.cursor = 'move'
+        let distanceX = event.clientX - div1.offsetLeft
+        let distanceY = event.clientY - div1.offsetTop
+        document.onmousemove = function (ev) {
+            let oevent = ev || event
+            div1.style.left = oevent.clientX - distanceX + 'px'
+            div1.style.top = oevent.clientY - distanceY + 'px'
+        }
+        document.onmouseup = function () {
+            document.onmousemove = null
+            document.onmouseup = null
+            div1.style.cursor = 'default'
+            if (isBack) {
+                _this.createList(div1.style.left, div1.style.top)
+                div1.style.left = ""
+                div1.style.top = ""
+            }
+        }
     }
 }
+
+export default publicMethods

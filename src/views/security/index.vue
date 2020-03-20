@@ -2,297 +2,255 @@
     <div class="content">
         <!--地图-->
         <s-map></s-map>
+
+        <!--地图组件-->
+        <div class="analysis-scope-1">
+            <el-col class="scope-col">
+                <img :src="icon"/>
+                <el-dropdown class="areaDropdown" trigger="click" @command="chooseArea">
+                    <span class="el-dropdown-link">
+                        {{area}}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown" class="mapDropdownItem">
+                        <el-dropdown-item v-for="(item,index) in areas" :key="index" :command=item.name>{{item.name}}
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </el-col>
+            <el-col class="scope-col" v-for="(item,index) in roads" :key="index" @click.native="chooseType(index)"
+                    :class="index == roadIndex?'onThisRoad':''">
+                <i :class=item.icon></i>
+                <p>{{item.name}}</p>
+            </el-col>
+        </div>
+
+        <div class="analysis-scope-2">
+            <div class="zq">周期</div>
+            <div>
+                <el-date-picker
+                        v-model="time"
+                        type="month"
+                        value-format="yyyyMM"
+                        format="yyyy年MM月"
+                        placeholder="选择周期"
+                        class="timeDropdown"
+                @change="test()">
+                </el-date-picker>
+            </div>
+        </div>
+
+        <div class="analysis-scope-3">
+            <el-checkbox-group v-model="mapList">
+                <el-checkbox label="事故分布图" class="map-checkbox"></el-checkbox>
+                <el-checkbox label="事故热力图" class="map-checkbox"></el-checkbox>
+                <el-checkbox label="执法热力图" class="map-checkbox"></el-checkbox>
+            </el-checkbox-group>
+        </div>
+
         <!--左侧-->
         <el-row class="s-left">
-            <el-col class="col-top">
-                <el-col class="col-head-a">
-                    <div class="title-block"></div>
-                    <p class="title">事故概况</p></el-col>
-            </el-col>
-            <el-col class="col-middle">
-                <el-col class="col-head">
-                    <el-col>
-                        <div class="title-block"></div>
-                        <p class="title">事故特征</p>
-                    </el-col>
-                    <i class="el-icon-full-screen" @click="fullscreen('sgtz','left',$event)"></i>
-                </el-col>
-            </el-col>
-            <el-col class="col-bottom">
-                <el-col class="col-head">
-                    <el-col>
-                        <div class="title-block"></div>
-                        <p class="title">违法概况</p>
-                    </el-col>
-                    <i class="el-icon-full-screen"></i></el-col>
-            </el-col>
+            <sggk></sggk>
+
+
+            <sgtz></sgtz>
+
+
+            <wfgk></wfgk>
+
         </el-row>
+
         <!--底部-->
         <el-row class="s-bottom">
-            <el-col>
-                <el-col class="col-head-a">
-                    <div class="title-block"></div>
-                    <div class="bottom-tab tab-head">
-                        <div class="tab-line"></div>
-                        <p v-for="(item,index) in bottomTab" :key="index" class="title-a"
-                           :class="bottomIndex == index?'tabOnThis':''" @click="changeTab(index,$event)">
-                            {{item.name}}</p>
-                    </div>
-                </el-col>
-                <el-col class="tab-body">
-                    <div class="radio-list">
-                        <el-radio v-model="bottomRadio" label="1">月度</el-radio>
-                        <el-radio v-model="bottomRadio" label="2">时段</el-radio>
-                        <el-radio v-model="bottomRadio" label="3">星期</el-radio>
-                    </div>
-                    <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}"></div>
-                </el-col>
-            </el-col>
+
+            <sgqs-yjxx></sgqs-yjxx>
+
         </el-row>
+
         <!--右侧-->
         <el-row class="s-right">
-            <el-col class="col-top">
-                <el-col class="col-head">
-                    <el-col>
-                        <div class="title-block"></div>
-                        <p class="title">区域安全</p>
-                    </el-col>
-                    <i class="el-icon-full-screen"></i></el-col>
-            </el-col>
-            <el-col class="col-middle">
-                <el-col class="col-head">
-                    <el-col>
-                        <div class="title-block"></div>
-                        <p class="title">道路安全</p>
-                    </el-col>
-                    <i class="el-icon-full-screen"></i></el-col>
-            </el-col>
-            <el-col class="col-bottom">
-                <el-col class="col-head-a">
-                    <div class="title-block"></div>
-                    <div class="right-tab tab-head">
-                        <div class="tab-line"></div>
-                        <p v-for="(item,index) in rightTab" :key="index" class="title-a"
-                           :class="rightIndex == index?'tabOnThis':''" @click="changeTab2(index,$event)">
-                            {{item.name}}</p>
-                    </div>
-                    <i class="el-icon-full-screen"></i>
-                </el-col>
-            </el-col>
+
+            <qyaq></qyaq>
+
+            <dlaq></dlaq>
+
+            <yyaq-claq-jsyaq></yyaq-claq-jsyaq>
+
         </el-row>
     </div>
 </template>
 
 <script>
-    import $ from 'jquery'
-    import sMap from './components/Map'
+    import icon from '@/assets/images/home.png'
     // import securityMethods from 'src/views/security/security-methods.js'
+    import sMap from './components/Map'
+    import Sggk from './components/Sggk'
+    import Sgtz from './components/Sgtz'
+    import Wfgk from './components/Wfgk'
+    import SgqsYjxx from './components/SgqsYjxx'
+    import Qyaq from './components/Qyaq'
+    import Dlaq from './components/Dlaq'
+    import YyaqClaqJsyaq from './components/YyaqClaqJsyaq'
 
     export default {
         name: "security",
         components: {
             sMap,
+            Sggk,
+            Sgtz,
+            Wfgk,
+            SgqsYjxx,
+            Qyaq,
+            Dlaq,
+            YyaqClaqJsyaq
+
         },
         data() {
             return {
-                bottomIndex: 0,//事故趋势、预警信息tab
-                bottomTab: [{name: "事故趋势"}, {name: "预警信息"}],
-                bottomRadio: 1,//事故趋势、预警信息tab中单选按钮
-                rightIndex: 0,//营运、车辆、驾驶员tab
-                rightTab: [{name: "营运安全"}, {name: "车辆安全"}, {name: "驾驶员安全"}]
+                icon,//分析范围图标
+                areas: [{name: "全市"}, {name: "虎丘区"}, {name: "姑苏区"}, {name: "太湖度假区"},],//分析的区域
+                area: "全市",//当前选择区域
+                roads: [{name: "高速公路", icon: ""}, {name: "城市快速路", icon: ""}, {name: "地面道路", icon: ""}],//分析的道路类型
+                roadIndex: 0,//分析的道路类型选中
+                time: this.$publicMethods.getMonthStr(),//周期
+                mapList: [""],//专题图
+
+
             }
         },
         methods: {
-            changeTab(index, event) {//自制tab 底部
-                this.bottomIndex = index
-                this.tabEvent(event)
+            chooseArea(command) {//选择当前分析区域
+                this.area = command
             },
 
-            changeTab2(index, event) {//自制tab 右下
-                this.rightIndex = index
-                this.tabEvent(event)
+            chooseType(i) {//选择分析的道路类型
+                this.roadIndex = i
             },
-
-            tabEvent(event) {//线条选中切换
-                let leftPx = event.currentTarget.offsetLeft
-                let widthPx = event.currentTarget.clientWidth / 2
-                let widthPx2 = event.currentTarget.parentNode.childNodes[0].clientWidth / 2
-                let offsetPx = leftPx + (widthPx - widthPx2) + 5
-                let line = event.currentTarget.parentNode.childNodes[0]
-                line.style.transform = "translateX(" + offsetPx + "px)"
-            },
-
-            fullscreen(name, position, event) {//模块放大展示
-                // debugger
-                // event.currentTarget.parentNode.parentNode.style.width = '30%'
-                // event.currentTarget.parentNode.parentNode.style.height = '100%'
-                // event.currentTarget.parentNode.parentNode.style.height = '100%'
-            }
 
         },
         mounted() {
-            $(".tab-line").css("transform", "translateX(15px)")
+
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    @import "../../assets/css/styles/security.scss";
+
     .content {
         position: relative;
         width: 100%;
         height: 100%;
 
-        .s-left, .s-right, .s-bottom {
+        /*地图组件*/
+        .analysis-scope-1 {
             position: absolute;
             z-index: 50;
+            top: 22px;
+            left: calc(21% + 22px);
+            border-radius: 2px;
+            box-shadow: 0 1px 3px #BCBCBC;
+            padding: 10px 13px;
+            background: #fff;
+            @include flex-xlyc();
 
-            > .el-col {
-                background-color: #FFFFFF;
-                border-radius: 2px;
-                box-shadow: 0 3px 6px #C2C1D3;
-                transition: all 0.3s linear;
+            .scope-col {
+                padding: 0 13px;
+                border-right: 1px dashed rgba(130, 145, 169, 0.25);
+                cursor: pointer;
+                @include flex-xlyc();
+
+                img {
+                    width: 11px;
+                    height: 11px;
+                    margin-right: 6px;
+                }
+
+                p {
+                    font-size: 12px;
+                    color: #4B5774;
+                    white-space: nowrap;
+                }
+            }
+
+            .scope-col:last-child {
+                border-right: 0;
+            }
+
+            .onThisRoad {
+                color: #387DFF;
             }
         }
 
-        .s-left {
-            top: 0;
-            left: 0;
-            width: 21%;
-            height: 100%;
+        .analysis-scope-2 {
+            position: absolute;
+            z-index: 50;
+            top: 22px;
+            right: calc(21% + 22px);
+            height: 40px;
+            border-radius: 2px;
+            box-shadow: 0 3px 6px rgba(194, 193, 211, 0.6);
+            background: #fff;
+            @include flex-xlyc();
 
-            .col-top {
-                width: 100%;
-                height: 35.67%;
-            }
-
-            .col-middle {
-                width: 100%;
-                height: calc(31% - 10px);
-                margin-top: 10px;
-            }
-
-            .col-bottom {
-                width: 100%;
-                height: calc(33.33% - 10px);
-                margin-top: 10px;
-            }
-        }
-
-        .s-right {
-            top: 0;
-            right: 0;
-            width: 21%;
-            height: 100%;
-
-
-            .col-top {
-                width: 100%;
-                height: 33.33%;
-            }
-
-            .col-middle {
-                width: 100%;
-                height: calc(33.33% - 10px);
-                margin-top: 10px;
-            }
-
-            .col-bottom {
-                width: 100%;
-                height: calc(33.33% - 10px);
-                margin-top: 10px;
-            }
-        }
-
-        .s-bottom {
-            left: 21%;
-            bottom: 0;
-            width: calc(58% - 20px);
-            height: calc(33.33% - 10px);
-            margin-left: 10px;
-
-            > .el-col {
-                width: 100%;
+            .zq {
                 height: 100%;
+                width: 70px;
+                color: #fff;
+                font-size: 13px;
+                @include flex-xcyc();
+                background-image: linear-gradient(to bottom, #679CF6, #4072EE);
             }
         }
 
-        .col-head-a {
-            width: 100%;
-            height: 49px;
-            padding: 0 22px 0 0;
-            border-bottom: 1px solid #ECECEC;
+        .analysis-scope-3 {
+            position: absolute;
+            z-index: 50;
+            bottom: calc(33.33% + 12px);
+            right: calc(21% + 22px);
+            height: 40px;
             @include flex-xlyc();
         }
+    }
+</style>
 
-        .col-head {
-            width: 100%;
-            height: 49px;
-            padding: 0 22px 0 0;
-            border-bottom: 1px solid #eee;
-            @include flex-xlryc();
+<style lang="scss">
+    .areaDropdown, .timeDropdown {
+        color: #4B5774;
+        font-size: 12px;
+        white-space: nowrap;
+    }
 
-            > .el-col {
-                @include flex-xlyc();
-            }
+    .timeDropdown {
+        width: 150px !important;
+    }
+
+    .mapDropdownItem {
+        li {
+            color: #4B5774;
+            font-size: 12px;
         }
+    }
 
-        .title-block {
-            width: 4px;
-            height: 25px;
-            background-image: linear-gradient(to bottom left, #679CF6, #4072EE);
-            border-radius: 0px 5px 5px 0px;
+    .map-checkbox {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 13px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.9);
+
+        .el-checkbox__label {
+            font-size: 12px;
+            color: #4B5774;
         }
+    }
 
-        .title {
-            font-size: 16px;
-            padding: 0 0 0 14px;
-            font-size: medium;
-        }
+    .right-table .el-table thead {
+        color: #4B5774;
+        font-size: 12px;
+    }
 
-        .title-a {
-            position: relative;
-            font-size: 13px;
-            font-weight: bold;
-            padding: 0 0 0 10px;
-            color: #817f7e;
-            cursor: pointer;
-        }
-
-        .tabOnThis {
-            position: relative;
-            color: #000;
-            font-weight: bold;
-
-
-        }
-
-        .tab-head {
-            position: relative;
-            height: 100%;
-            @include flex-xlyc();
-
-            .tab-line {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 2px;
-                width: 40px;
-                background-color: #652BF5;
-                z-index: 55;
-                transition: all 0.3s ease;
-            }
-        }
-
-        .tab-body {
-            width: 100%;
-            height: calc(100% - 35px);
-
-            .radio-list {
-                width: 100%;
-                height: 30px;
-                @include flex-xlyc();
-            }
-        }
-
+    .right-table .el-table__body-wrapper {
+        color: #172034;
+        font-size: 13px;
     }
 </style>
