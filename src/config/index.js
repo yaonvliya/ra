@@ -9,7 +9,7 @@ const modeUrlObj = {
   },
   // 开发环境-dev
   'development': {
-    baseURL: 'development',
+    baseURL: 'http://192.168.5.57:8001',
     mapServiceUrl:"http://192.168.5.56:8080",
     layerType:"sz_online",
     authBaseURL: ''

@@ -12,6 +12,7 @@ Vue.use(ElementUI)
 
 // 引入echarts
 import echarts from 'echarts'
+
 Vue.prototype.$echarts = echarts
 
 Vue.prototype.$publicMethods = publicMethods
@@ -23,3 +24,4 @@ new Vue({
   store,
   render: h => h(App),
 }).$mount('#app')
+//test

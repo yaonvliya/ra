@@ -48,7 +48,9 @@
     "rules": {
       "no-console": "off",
       "no-unused-vars": "off",
-      "no-case-declarations": "off"
+      "no-case-declarations": "off",
+      "no-debugger": "off",
+      "no-empty": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"

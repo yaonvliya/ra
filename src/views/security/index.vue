@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <!--地图-->
-        <s-map></s-map>
+        <RaMap></RaMap>
 
         <!--地图组件-->
         <div class="analysis-scope-1">
@@ -82,7 +82,7 @@
 <script>
     import icon from '@/assets/images/home.png'
     // import securityMethods from 'src/views/security/security-methods.js'
-    import sMap from './components/Map'
+    import RaMap from "components/RaMap/index.vue"
     import Sggk from './components/Sggk'
     import Sgtz from './components/Sgtz'
     import Wfgk from './components/Wfgk'
@@ -94,15 +94,14 @@
     export default {
         name: "security",
         components: {
-            sMap,
+            RaMap,
             Sggk,
             Sgtz,
             Wfgk,
             SgqsYjxx,
             Qyaq,
             Dlaq,
-            YyaqClaqJsyaq
-
+            YyaqClaqJsyaq,
         },
         data() {
             return {

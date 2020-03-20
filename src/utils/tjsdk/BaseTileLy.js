@@ -402,6 +402,7 @@ BaseTileLy.prototype = {
         let lyName = 'suzhou_map_all_OSM';
         let resolutions = [0.0016656227040811962, 7.138383017490841E-4, 4.283029810494504E-4, 2.97432625728785E-4, 1.9035688046642243E-4, 9.517844023321122E-5, 4.758922011660561E-5, 2.3794610058302804E-5, 9.51784402332112E-6, 4.75892201166056E-6];
         let tileLayer = new TileLayer({
+            visible:true,
             source: new TileWMSSource({
                 url: url,
                 params: {
