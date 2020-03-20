@@ -12,28 +12,32 @@
             </div>
             <i class="el-icon-full-screen"></i>
         </el-col>
-        <el-col class="col-body-d">
-            <el-table
-                    :data="tableData"
-                    height="197"
-                    class="right-table">
-                <el-table-column
-                        align="center"
-                        prop="date"
-                        label="大队"
-                        width="120">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="name"
-                        label="事故总数">
-                </el-table-column>
-                <el-table-column
-                        align="center"
-                        prop="address"
-                        label="死亡事故">
-                </el-table-column>
-            </el-table>
+        <el-col class="col-body">
+            <div class="security-right-table">
+                <el-table
+                        :data="tableData"
+                        height="197">
+                    <el-table-column
+                            align="center"
+                            prop="date"
+                            label="大队"
+                            width="120">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="name"
+                            label="事故总数">
+                    </el-table-column>
+                    <el-table-column
+                            align="center"
+                            prop="address"
+                            label="死亡事故">
+                        <template slot-scope="scope">
+                            <span style="color: #FF5F58;">{{scope.row.address}}</span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
         </el-col>
     </el-col>
 </template>
@@ -100,5 +104,8 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../assets/css/styles/security.scss";
+    .col-body {
+        height: calc(100% - 49px);
+        padding: 13px 13px 26px 16px;
+    }
 </style>

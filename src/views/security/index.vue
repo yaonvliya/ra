@@ -6,7 +6,7 @@
         <!--地图组件-->
         <div class="analysis-scope-1">
             <el-col class="scope-col">
-                <img :src="icon"/>
+                <i class="iconfont dingwei dw-icon"/>
                 <el-dropdown class="areaDropdown" trigger="click" @command="chooseArea">
                     <span class="el-dropdown-link">
                         {{area}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -19,7 +19,7 @@
             </el-col>
             <el-col class="scope-col" v-for="(item,index) in roads" :key="index" @click.native="chooseType(index)"
                     :class="index == roadIndex?'onThisRoad':''">
-                <i :class=item.icon></i>
+                <i :class=item.icon class="other-icon"></i>
                 <p>{{item.name}}</p>
             </el-col>
         </div>
@@ -108,12 +108,10 @@
                 icon,//分析范围图标
                 areas: [{name: "全市"}, {name: "虎丘区"}, {name: "姑苏区"}, {name: "太湖度假区"},],//分析的区域
                 area: "全市",//当前选择区域
-                roads: [{name: "高速公路", icon: ""}, {name: "城市快速路", icon: ""}, {name: "地面道路", icon: ""}],//分析的道路类型
+                roads: [{name: "高速公路", icon: "iconfont gaosu"}, {name: "城市快速路", icon: "iconfont kuaisu"}, {name: "地面道路", icon: "iconfont land"}],//分析的道路类型
                 roadIndex: 0,//分析的道路类型选中
                 time: this.$publicMethods.getMonthStr(),//周期
                 mapList: [""],//专题图
-
-
             }
         },
         methods: {
@@ -148,7 +146,7 @@
             left: calc(21% + 22px);
             border-radius: 2px;
             box-shadow: 0 1px 3px #BCBCBC;
-            padding: 10px 13px;
+            padding: 10px 0px;
             background: #fff;
             @include flex-xlyc();
 
@@ -176,7 +174,21 @@
             }
 
             .onThisRoad {
-                color: #387DFF;
+                i,p {
+                    color: #387DFF;
+                }
+            }
+            
+            .dw-icon {
+                font-size: 12px;
+                color: #FFC811;
+                margin-right: 7px;
+            }
+
+            .other-icon{
+                font-size: 12px;
+                color: #7C8196;
+                margin-right: 7px;
             }
         }
 
@@ -213,6 +225,8 @@
 </style>
 
 <style lang="scss">
+    @import "../../assets/css/styles/security.scss";
+
     .areaDropdown, .timeDropdown {
         color: #4B5774;
         font-size: 12px;
@@ -243,13 +257,5 @@
         }
     }
 
-    .right-table .el-table thead {
-        color: #4B5774;
-        font-size: 12px;
-    }
 
-    .right-table .el-table__body-wrapper {
-        color: #172034;
-        font-size: 13px;
-    }
 </style>

@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "iconfont";
+    src: url('iconfont.eot?t=1584688436419'); /* IE9 */
+    src: url('iconfont.eot?t=1584688436419#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARYAAsAAAAACKAAAAQJAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDMgqEPIN0ATYCJAMUCwwABCAFhG0HSRuBB1FUMMLIfhzkZEcrpHSKyg5NU+EV61elMYLv19B9Hy6Xf0FWgC7xPD4qwnGrahyR0DW2wlSoji8Ln+HfbT3KGHbsqqzsCQ8c9JjRnJcNRsTXRQZ40U0M/M8x00XpwPLbbC6RRdnWOMDxnu8NqCLuhO+ATpRvEc8mg/8JXE2g2bAY5TIqIQPoKNROgXiOczGgE9EoBcTQy7uMkUV8AAx9ekn9Dnjv/H784xY6JDVTe17dRrJByE+vU2hyjRwUWAjA7c4EdhwZh4BCvMi0PEfz/Idomvx3dKeAppekn567P9/3OkWjQREsSNa0f3hkRRJER00eA6cYKPwEBp3MT3dOlnQf0En8TeEdy0oVNEwBvgLgP1AVm11GFVUuIJzQVetmTvqMnt4yiwlaNm52b6xtVG2wVmFZq2QOr82rd2wv1a9BqvS1241i1IJi4Mvw2lFKtFCtpWPM6XUj8mEzBJi7vBR3TY0NzWNWIWvV2W2O2X3Ts7K7MCSbmYvkIwt6CVt6ug8gSA1zncq1xT5T3bWDNXYnW63OunEjQ3WrqG86+qRqRveNiFNqSNl50bo9Y1212qHtsveNG3YqVeb0dHan+uIu9hn2N2q+okMz384E3vKyj7qTVsZ9Ywn6B/QTnNpWk8LZ8UZPVgZamq6MtwaefvkxwlDRrzCMQCOMFL4fGdW4EXzHR1+FYSboH+vxKlWFNOnMchmPnI3Z5Kw/YFN0zVZwxDJnaJVhmtbqcIt7Uj2jHIMMpuEm/UaLi6rWLaehF3TcXXCfeJdgVqtVsec9i3wl0BQ0PWk0bKJKlUqpKaQiE0SGiUhIZURHp6QYMoZTO7gDXLLUXtIXUANqWL2WaFteyjPlRyK00PuZgxSNCUxPiETrgyoAAKBZu5VW4dRX/sU1PzV3/htCUL6WJv8QNqNbkw2LDQO++fdDAT9aN3ogq7pJTldNAp6mVGXuY69UwNNPCsdXtbVIPIPw9JPbxKk6umC2xBPOediOGfe7sc0DgSn0HBcgGbEOWW8TWbCHUA2OodM7geZA9PjBLAJNlFHsW0EgTJmCZMI3yKZcRBbsPagWvIPOVNCguQ7TGQfbgSPhBMRIyEZLq1GcJRZxdD2JuKlpkFsuwIgw3yFlQUKGu1BXJ5d4KBqKINFFH1kF140kOSiHEAvRKLIeFAjEqIQQ8yCLdCojSYmfszMn60lOLLEQIC4QIAwJYkOVqobCsYiJcKzSJCTx82kgrnICGKKgoMyYBSLI4NWjXDlxqYCMlogqFZzKOTIVuNyQSBwoDoKYECqKmCCB5hdDSbKb8UAsJCdlDbwSfpyxGKeqxGl4mfAcl0GjzlojRY4SNTr1DhPLyrX45RhuD6ILMBFbm42LuJUQBwAAAAA=') format('woff2'),
+    url('iconfont.woff?t=1584688436419') format('woff'),
+    url('iconfont.ttf?t=1584688436419') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('iconfont.svg?t=1584688436419#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.gaosu:before {
+    content: "\ea50";
+}
+
+.kuaisu:before {
+    content: "\e6ba";
+}
+
+.land:before {
+    content: "\e600";
+}
+
+.dingwei:before {
+    content: "\e633";
+}
+

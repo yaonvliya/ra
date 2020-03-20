@@ -1,0 +1,37 @@
+{
+  "id": "1700620",
+  "name": "manege-V3",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "703560",
+      "name": "road",
+      "font_class": "gaosu",
+      "unicode": "ea50",
+      "unicode_decimal": 59984
+    },
+    {
+      "icon_id": "13598419",
+      "name": "Road",
+      "font_class": "kuaisu",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "1331",
+      "name": "高速",
+      "font_class": "land",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1163149",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    }
+  ]
+}

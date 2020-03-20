@@ -50,6 +50,23 @@ i {
   font-style: normal;
 }
 
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: transparent;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background: #4B5774;
+}
+
 /*flex排列*/
 .xl {
   display: flex;
