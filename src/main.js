@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import { router } from './router/index'
 import store from './store/index'
+import publicMethods from './utils/public-methods.js'
 import "amfe-flexible" // 引入flexible
 
 import ElementUI from 'element-ui'
@@ -13,6 +14,8 @@ Vue.use(ElementUI)
 import echarts from 'echarts'
 
 Vue.prototype.$echarts = echarts
+
+Vue.prototype.$publicMethods = publicMethods
 
 //设置为 false 以阻止 vue 在启动时生成生产提示
 Vue.config.productionTip = false

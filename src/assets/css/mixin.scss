@@ -38,5 +38,10 @@
   justify-content: $justifyContent;
 }
 
+@mixin flex-yc($alignItems: center) {
+  display: flex;
+  align-items: $alignItems;
+}
+
 
 
