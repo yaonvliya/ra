@@ -28,7 +28,7 @@ var chartsParam = {
             }
         },
         grid: {
-            top: 10,
+            top: 6,
             left: 50,
             right: 30,
             bottom: 62

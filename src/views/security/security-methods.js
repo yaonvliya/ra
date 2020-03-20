@@ -7,7 +7,7 @@ import esApi from '../../api/esApi.js'
 import esJson from './esJson.js'
 
 
-var securityMethods = {
+const securityMethods = {
     search(_this) {
         localStorage.setItem('v3_userNumber', '000000');
         localStorage.setItem('v3_organizationNumber', '320500');
