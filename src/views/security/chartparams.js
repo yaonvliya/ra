@@ -36,7 +36,7 @@ var chartsParam = {
         legend: {
             show: true,
             right: 15,
-            top: 5,
+            top: 0,
             textStyle: {
                 color: '#999999',
                 fontFamily: 'PingFang',

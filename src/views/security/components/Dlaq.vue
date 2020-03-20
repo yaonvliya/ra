@@ -14,18 +14,18 @@
                     class="right-table">
                 <el-table-column
                         align="center"
-                        prop="date"
-                        label="大队"
+                        prop="name"
+                        label="路名"
                         width="120">
                 </el-table-column>
                 <el-table-column
                         align="center"
-                        prop="name"
+                        prop="sgzs"
                         label="事故总数">
                 </el-table-column>
                 <el-table-column
                         align="center"
-                        prop="address"
+                        prop="swsg"
                         label="死亡事故">
                 </el-table-column>
             </el-table>
@@ -34,40 +34,34 @@
 </template>
 
 <script>
+    import esApi from '../../../api/esApi.js'
+    import esJson from '../esJson.js'
     export default {
         name: "Dlaq",
         data() {
             return {
-                tableData: [{
-                    date: '2016-05-03',
-                    name: '12',
-                    address: '12'
-                }, {
-                    date: '2016-05-02',
-                    name: '21',
-                    address: '32'
-                }, {
-                    date: '2016-05-04',
-                    name: '21',
-                    address: '12'
-                }, {
-                    date: '2016-05-01',
-                    name: '34',
-                    address: '32'
-                }, {
-                    date: '2016-05-08',
-                    name: '23',
-                    address: '1'
-                }, {
-                    date: '2016-05-06',
-                    name: '12',
-                    address: '23'
-                }, {
-                    date: '2016-05-07',
-                    name: '12',
-                    address: '23'
-                }]
+                tableData: []
             }
+        },
+        methods: {
+            getRoadSafe(time, type) {
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.dlaq(time, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]["a1"]["buckets"]
+                    let data = []
+                    for (let i = 0; i < result.length; i++) {
+                        data.push({
+                            name: result[i]["key"],
+                            sgzs: result[i]["doc_count"],
+                            swsg: result[i]["a2"]["value"],
+                        })
+                    }
+                    this.tableData = data
+                })
+            },
         }
     }
 </script>

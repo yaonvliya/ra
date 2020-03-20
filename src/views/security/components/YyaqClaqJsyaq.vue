@@ -19,19 +19,19 @@
                     class="right-table">
                 <el-table-column
                         align="center"
-                        prop="date"
-                        label="大队"
+                        prop="name"
+                        :label="title"
                         width="120">
                 </el-table-column>
                 <el-table-column
                         align="center"
-                        prop="name"
-                        label="事故总数">
+                        prop="wfzs"
+                        label="违法总数">
                 </el-table-column>
                 <el-table-column
                         align="center"
-                        prop="address"
-                        label="死亡事故">
+                        prop="sgzs"
+                        label="事故事故">
                 </el-table-column>
             </el-table>
         </el-col>
@@ -40,47 +40,25 @@
 
 <script>
     import $ from 'jquery'
+    import esApi from '../../../api/esApi.js'
+    import esJson from '../esJson.js'
+    import config from '@/config/index'
+
     export default {
         name: "YyaqClaqJsyaq",
         data() {
             return {
                 rightIndex: 0,//营运、车辆、驾驶员tab
                 rightTab: [{name: "营运安全"}, {name: "车辆安全"}, {name: "驾驶员安全"}],
-                tableData: [{
-                    date: '2016-05-03',
-                    name: '12',
-                    address: '12'
-                }, {
-                    date: '2016-05-02',
-                    name: '21',
-                    address: '32'
-                }, {
-                    date: '2016-05-04',
-                    name: '21',
-                    address: '12'
-                }, {
-                    date: '2016-05-01',
-                    name: '34',
-                    address: '32'
-                }, {
-                    date: '2016-05-08',
-                    name: '23',
-                    address: '1'
-                }, {
-                    date: '2016-05-06',
-                    name: '12',
-                    address: '23'
-                }, {
-                    date: '2016-05-07',
-                    name: '12',
-                    address: '23'
-                }]
+                tableData: [],
+                title: "企业名称"
             }
         },
         methods: {
             changeTab2(index, event) {//自制tab 右下
                 this.rightIndex = index
                 this.tabEvent(event)
+                this.changeSearch()
             },
 
             tabEvent(event) {//线条选中切换
@@ -91,7 +69,48 @@
                 let line = event.currentTarget.parentNode.childNodes[0]
                 line.style.transform = "translateX(" + offsetPx + "px)"
             },
-
+            getSafety(time, index, type) {
+                esApi.searchESProxy({
+                    "index": index,
+                    "type": "doc",
+                    "jsonCommand": esJson.safety(type, time, time)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]["model"]["buckets"]
+                    let data = []
+                    for (let i = 0; i < result.length; i++) {
+                        data.push({
+                            name: result[i]["key"],
+                            wfzs: result[i]["a1"]["value"],
+                            sgzs: result[i]["a2"]["value"]
+                        })
+                    }
+                    this.tableData = data
+                })
+            },
+            changeSearch() {
+                if (this.rightIndex == 0) {
+                    this.title = "企业名称"
+                    this.getSafety(this.$parent.$parent.time, config.company_index, "所属单位")
+                } else if (this.rightIndex == 1) {
+                    this.title = "号牌号码"
+                    this.getSafety(this.$parent.$parent.time, config.vehicle_index, "号牌号码")
+                } else {
+                    this.title = "姓名"
+                    this.getSafety(this.$parent.$parent.time, config.human_index, "姓名")
+                }
+            },
+            search(time) {
+                if (this.rightIndex == 0) {
+                    this.title = "企业名称"
+                    this.getSafety(time, config.company_index, "所属单位")
+                } else if (this.rightIndex == 1) {
+                    this.title = "号牌号码"
+                    this.getSafety(time, config.vehicle_index, "号牌号码")
+                } else {
+                    this.title = "姓名"
+                    this.getSafety(time, config.human_index, "姓名")
+                }
+            }
         },
         mounted() {
             $(".tab-line").css("transform", "translateX(17px)")

@@ -34,7 +34,7 @@
                         format="yyyy年MM月"
                         placeholder="选择周期"
                         class="timeDropdown"
-                @change="test()">
+                        @change="changeTime()">
                 </el-date-picker>
             </div>
         </div>
@@ -49,31 +49,31 @@
 
         <!--左侧-->
         <el-row class="s-left">
-            <sggk></sggk>
+            <sggk ref="sggk"></sggk>
 
 
-            <sgtz></sgtz>
+            <sgtz ref="sgtz"></sgtz>
 
 
-            <wfgk></wfgk>
+            <wfgk ref="wfgk"></wfgk>
 
         </el-row>
 
         <!--底部-->
         <el-row class="s-bottom">
 
-            <sgqs-yjxx></sgqs-yjxx>
+            <sgqs-yjxx ref="sgqs_yjxx"></sgqs-yjxx>
 
         </el-row>
 
         <!--右侧-->
         <el-row class="s-right">
 
-            <qyaq></qyaq>
+            <qyaq ref="qyaq"></qyaq>
 
-            <dlaq></dlaq>
+            <dlaq ref="dlaq"></dlaq>
 
-            <yyaq-claq-jsyaq></yyaq-claq-jsyaq>
+            <yyaq-claq-jsyaq ref="yyaq_claq_jsyaq"></yyaq-claq-jsyaq>
 
         </el-row>
     </div>
@@ -81,7 +81,6 @@
 
 <script>
     import icon from '@/assets/images/home.png'
-    // import securityMethods from 'src/views/security/security-methods.js'
     import RaMap from "components/RaMap/index.vue"
     import Sggk from './components/Sggk'
     import Sgtz from './components/Sgtz'
@@ -112,8 +111,6 @@
                 roadIndex: 0,//分析的道路类型选中
                 time: this.$publicMethods.getMonthStr(),//周期
                 mapList: [""],//专题图
-
-
             }
         },
         methods: {
@@ -124,10 +121,21 @@
             chooseType(i) {//选择分析的道路类型
                 this.roadIndex = i
             },
-
+            changeTime(){
+                this.search()
+            },
+            search() {
+                this.$refs.sggk.getAccBasic1(this.time, "")
+                this.$refs.sggk.getAccBasic2(this.time, "")
+                this.$refs.sgqs_yjxx.search(this.time, "")
+                this.$refs.qyaq.getAreaSafe(this.time, "")
+                this.$refs.dlaq.getRoadSafe(this.time, "")
+                this.$refs.yyaq_claq_jsyaq.search(this.time)
+            }
         },
         mounted() {
-
+            localStorage.setItem('v3_organizationNumber', '320500');
+            this.search()
         }
     }
 </script>
