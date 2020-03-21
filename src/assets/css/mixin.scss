@@ -49,5 +49,10 @@
   justify-content: $alignItems;
 }
 
+@mixin flex-xl($justifyContent: flex-start) {
+  display: flex;
+  justify-content: $justifyContent;
+}
+
 
 

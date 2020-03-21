@@ -5,6 +5,7 @@ import store from './store/index'
 import publicMethods from './utils/public-methods.js'
 import "amfe-flexible" // 引入flexible
 import './assets/icons/iconfont.css';
+import './static/js/resize.js'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'

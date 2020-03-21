@@ -47,6 +47,25 @@
             </el-checkbox-group>
         </div>
 
+        <div class="analysis-scope-4">
+            <div>
+                <div class="legend-block legend-block-1"></div>
+                <p class="legend-p">100人以上</p>
+            </div>
+            <div>
+                <div class="legend-block legend-block-2"></div>
+                <p class="legend-p">50-100人</p>
+            </div>
+            <div>
+                <div class="legend-block legend-block-3"></div>
+                <p class="legend-p">1-50人</p>
+            </div>
+            <div>
+                <div class="legend-block legend-block-4"></div>
+                <p class="legend-p">0</p>
+            </div>
+        </div>
+
         <!--左侧-->
         <el-row class="s-left">
             <sggk ref="sggk"></sggk>
@@ -80,7 +99,6 @@
 </template>
 
 <script>
-    import icon from '@/assets/images/home.png'
     import RaMap from "components/RaMap/index.vue"
     import Sggk from './components/Sggk'
     import Sgtz from './components/Sgtz'
@@ -104,10 +122,12 @@
         },
         data() {
             return {
-                icon,//分析范围图标
                 areas: [{name: "全市"}, {name: "虎丘区"}, {name: "姑苏区"}, {name: "太湖度假区"},],//分析的区域
                 area: "全市",//当前选择区域
-                roads: [{name: "高速公路", icon: "iconfont gaosu"}, {name: "城市快速路", icon: "iconfont kuaisu"}, {name: "地面道路", icon: "iconfont land"}],//分析的道路类型
+                roads: [{name: "高速公路", icon: "iconfont gaosu"}, {name: "城市快速路", icon: "iconfont kuaisu"}, {
+                    name: "地面道路",
+                    icon: "iconfont land"
+                }],//分析的道路类型
                 roadIndex: 0,//分析的道路类型选中
                 time: this.$publicMethods.getMonthStr(),//周期
                 mapList: [""],//专题图
@@ -121,7 +141,7 @@
             chooseType(i) {//选择分析的道路类型
                 this.roadIndex = i
             },
-            changeTime(){
+            changeTime() {
                 this.search()
             },
             search() {
@@ -141,8 +161,6 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../assets/css/styles/security.scss";
-
     .content {
         position: relative;
         width: 100%;
@@ -184,18 +202,18 @@
             }
 
             .onThisRoad {
-                i,p {
+                i, p {
                     color: #387DFF;
                 }
             }
-            
+
             .dw-icon {
                 font-size: 12px;
                 color: #FFC811;
                 margin-right: 7px;
             }
 
-            .other-icon{
+            .other-icon {
                 font-size: 12px;
                 color: #7C8196;
                 margin-right: 7px;
@@ -230,6 +248,47 @@
             right: calc(21% + 22px);
             height: 40px;
             @include flex-xlyc();
+        }
+
+        .analysis-scope-4 {
+            position: absolute;
+            z-index: 50;
+            bottom: calc(33.33% + 12px);
+            left: calc(21% + 22px);
+            padding: 7px 8px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.9);
+
+            >div {
+                @include flex-xlyc();
+            }
+
+            .legend-block {
+                width: 13px;
+                height: 18px;
+                margin-right: 6px;
+            }
+
+            .legend-block-1 {
+                background-color: #C7373A
+            }
+
+            .legend-block-2 {
+                background-color: #ED4B24
+            }
+
+            .legend-block-3 {
+                background-color: #FF9C35
+            }
+
+            .legend-block-4 {
+                background-color: #6BCE95
+            }
+
+            .legend-p {
+                font-size: 11px;
+                color: #4B5774;
+            }
         }
     }
 </style>

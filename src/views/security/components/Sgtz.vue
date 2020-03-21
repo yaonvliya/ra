@@ -29,5 +29,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../assets/css/styles/security.scss";
+
 </style>

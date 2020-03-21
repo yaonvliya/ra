@@ -73,5 +73,17 @@
                 color: #97A4B2;
             }
         }
+
+        .wfgk-head > .el-col:nth-child(1) {
+            padding-left: 8px;
+        }
+
+        .wfgk-head > .el-col:nth-child(2) {
+            padding-left: 20px;
+        }
+
+        .wfgk-head > .el-col:nth-child(3) {
+            padding-left: 20px;
+        }
     }
 </style>

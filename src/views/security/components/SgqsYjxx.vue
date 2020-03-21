@@ -17,7 +17,7 @@
                     <el-radio :label="3">星期</el-radio>
                 </el-radio-group>
             </div>
-            <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}"></div>
+            <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}" v-on-echart-resize></div>
         </el-col>
     </el-col>
 </template>
@@ -150,14 +150,14 @@
                 }
 
             },
-            search(time,type) {
+            search(time, type) {
                 if (this.bottomIndex == 0) {
                     if (this.bottomRadio == 1) {
-                        this.getAccTrend_month(time,type)
+                        this.getAccTrend_month(time, type)
                     } else if (this.bottomRadio == 2) {
-                        this.getAccTrend_hour(time,type)
+                        this.getAccTrend_hour(time, type)
                     } else if (this.bottomRadio == 3) {
-                        this.getAccTrend_week(time,type)
+                        this.getAccTrend_week(time, type)
                     }
                 } else {
 
@@ -172,5 +172,18 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../assets/css/styles/security.scss";
+
+</style>
+<style lang="scss">
+    .radio-list > .el-radio__input.is-checked + .el-radio__label {
+        color: #4B5774;
+    }
+
+    .radio-list > .el-radio {
+        color: #4B5774;
+    }
+
+    .radio-list > .el-radio__label {
+        font-size: 11px;
+    }
 </style>

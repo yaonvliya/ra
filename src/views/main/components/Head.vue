@@ -64,7 +64,7 @@
 
 <style lang="scss" scoped>
     .sys-head {
-        height: 64px;
+        height: px2rem(63);
         width: 100%;
 
         .col:nth-child(1) {
@@ -76,67 +76,67 @@
         }
 
         .logo {
-            height: 40px;
-            margin: 0 7px 0 25px;
+            height: 4.27vh;
+            margin: 0 0.36vw 0 1.3vw;
         }
 
         .title {
-            font-size: 26px;
+            font-size: 0.13rem;
             color: #fff;
             text-shadow: 1px 1px 3px #23449D;;
         }
 
         .police {
-            height: 30px;
+            height: 3.2vh;
             border-radius: 50%;
         }
 
         .police-name {
-            height: 30px;
-            line-height: 30px;
-            font-size: 13px;
-            padding: 0 10px;
-            margin-right: 10px;
+            height: 3.2vh;
+            line-height: 3.2vh;
+            font-size: 0.06rem;
+            padding: 0 0.05vw;
+            margin-right: 0.05vw;
             border-right: 1px solid #fff;
             text-align: center;
         }
 
         .menu {
-            min-width: 177px;
-            height: 38px;
+            min-width: 9.22vw;
+            height: 4.05vh;
             border-radius: 200px;
-            margin-right: 17px;
+            margin-right: 0.88vw;
             background-color: rgba(26, 106, 206, 0.5);
             @include flex-xlyc();
 
             .module-now {
                 color: #FFFFFF;
-                font-size: 18px;
-                width: calc(100% - 46px);
+                font-size: 0.09rem;
+                width: calc(100% - 2.39vw);
                 text-align: center;
             }
 
             img {
-                width: 46px;
-                height: 46px;
+                width: 2.39vw;
+                height: 4.9vh;
             }
         }
 
         .miniM {
             position: absolute;
             z-index: 99;
-            top: 57px;
+            top: 6.08vh;
             right: 17px;
-            padding: 13px 0 !important;
-            width: 180px;
+            padding: 1.38vh 0 !important;
+            width: 9.375vw;
             background: #ffffff;
             box-shadow: 0px 3px 6px rgba(194, 193, 211, 0.73);
             border-radius: 4px;
 
             .module-name {
-                font-size: 14px;
-                line-height: 40px;
-                padding: 0 10px;
+                font-size: 0.07rem;
+                line-height: px2rem(40);
+                padding: 0 px2rem(10);
                 color: #4B5774;
                 cursor: pointer;
                 transition: all 0.1s linear;

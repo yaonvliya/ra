@@ -1,27 +1,27 @@
 <template>
     <div class="content">
-        <!--地图-->
-        <s-map></s-map>
         <s-sidebar :list="items"></s-sidebar>
+        <!--地图-->
+        <RaMap></RaMap>
     </div>
 </template>
 
 <script>
-    import sMap from './components/Map'
+    import RaMap from "components/RaMap/index.vue"
     import sSidebar from '@/components/Sidebar'
     import menu_icon from '@/assets/images/menu_2.png';
 
     export default {
         name: "areaManage",
         components: {
-            sMap,
+            RaMap,
             sSidebar,
         },
         data() {
             return {
                 items: [
                     {
-                        icon: menu_icon,
+                        icon: "el-icon-menu",
                         index: 'securitySituation',
                         title: '分析研判',
                         subs: [
@@ -113,5 +113,6 @@
         position: relative;
         width: 100%;
         height: 100%;
+        @include flex-xl()
     }
 </style>

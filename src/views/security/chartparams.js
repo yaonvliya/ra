@@ -8,7 +8,7 @@ var chartsParam = {
     /*事故趋势、预警信息-折线图*/
     securityBottomLineOption: {
         title: {
-            text: '月份分布',
+            text: '',
             show: false,
         },
         tooltip: {
@@ -16,30 +16,28 @@ var chartsParam = {
             padding: [8, 12, 8, 12],
             axisPointer: {
                 lineStyle: {
-                    color: 'rgba(23, 98, 249, 0.07)',
-                    width: 24
+                    color: 'rgba(0,0,0,0.25)',
+                    width: 2
                 }
             },
             backgroundColor: 'rgba(0, 0, 0, 0.75)',
             textStyle: {
                 color: '#fff',
-                fontFamily: 'PingFang',
                 fontSize: 14
             }
         },
         grid: {
-            top: 6,
-            left: 50,
-            right: 30,
-            bottom: 62
+            top: 15,
+            left: 33,
+            right: 33,
+            bottom: 64
         },
         legend: {
-            show: true,
+            show: false,
             right: 15,
             top: 0,
             textStyle: {
                 color: '#999999',
-                fontFamily: 'PingFang',
                 fontSize: 12
             },
             // selected: {
@@ -50,32 +48,46 @@ var chartsParam = {
             data: [],
         },
         xAxis: {
+            boundaryGap: false,
             axisLine: {
                 lineStyle: {
-                    color: '#DCDFE6'
+                    color: 'rgba(130, 145, 169, 0.25)',
+                    width: 1,
+                    type: 'solid'
                 }
             },
             axisTick: {
                 show: false
             },
             axisLabel: {
-                color: '#666666',
-                fontFamily: 'PingFang',
+                color: 'rgba(43, 48, 52, 0.4)',
                 fontSize: 12
+            },
+            splitLine: {
+                show: true,
+                interval: 4,
+                lineStyle: {
+                    color: 'rgba(130, 145, 169, 0.25)',
+                    width: 1,
+                    type: 'dashed'
+                }
             },
             data: [],
         },
         yAxis: [{
             name: '',
             axisLine: {
-                show: false
+                lineStyle: {
+                    color: 'rgba(130, 145, 169, 0.25)',
+                    width: 1,
+                    type: 'dashed'
+                }
             },
             axisTick: {
                 show: false
             },
             axisLabel: {
-                color: '#666666',
-                fontFamily: 'PingFang',
+                color: 'rgba(43, 48, 52, 0.4)',
                 fontSize: 12,
                 formatter: function (value) {
                     let y = value / 1000;
@@ -84,29 +96,32 @@ var chartsParam = {
             },
             splitLine: {
                 lineStyle: {
-                    color: '#E4E7ED',
+                    color: 'rgba(130, 145, 169, 0.25)',
                     width: 1,
-                    type: 'dotted'
+                    type: 'dashed'
                 }
             },
         }, {
             name: '',
             axisLine: {
-                show: false
+                lineStyle: {
+                    color: 'rgba(130, 145, 169, 0.25)',
+                    width: 1,
+                    type: 'dashed'
+                }
             },
             axisTick: {
                 show: false
             },
             axisLabel: {
-                color: '#666666',
-                fontFamily: 'PingFang',
+                color: 'rgba(43, 48, 52, 0.4)',
                 fontSize: 12
             },
             splitLine: {
                 lineStyle: {
-                    color: '#E4E7ED',
+                    color: 'rgba(130, 145, 169, 0.25)',
                     width: 1,
-                    type: 'dotted'
+                    type: 'dashed'
                 }
             }
         }],
@@ -117,15 +132,13 @@ var chartsParam = {
                 showSymbol: false,
                 smooth: true,
                 symbol: 'circle',
+                symbolSize: 6,
                 itemStyle: {
-                    color: '#268BFF',
+                    color: '#387DFF',
                 },
                 lineStyle: {
-                    color: '#268BFF',
+                    color: '#387DFF',
                     width: 2,
-                    shadowColor: 'rgba(38,139,255,0.88)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 3
                 },
                 markPoint: {
                     data: [
@@ -133,10 +146,10 @@ var chartsParam = {
                             type: 'max',
                             name: '最大值',
                             symbol: 'circle',
-                            symbolSize: 12,
+                            symbolSize: 6,
                             itemStyle: {
-                                color: '#fff',
-                                borderColor: '#268BFF',
+                                color: '#387DFF',
+                                borderColor: '#ffffff',
                                 borderWidth: 2,
                             },
                             label: {
@@ -144,6 +157,21 @@ var chartsParam = {
                             }
                         },
                     ]
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color: 'rgba(56, 125, 255, 0.45)' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'rgba(56, 125, 255, 0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
                 },
                 data: []
             },
@@ -153,15 +181,13 @@ var chartsParam = {
                 showSymbol: false,
                 smooth: true,
                 symbol: 'circle',
+                symbolSize: 6,
                 itemStyle: {
-                    color: '#4DCB73',
+                    color: '#23B899',
                 },
                 lineStyle: {
-                    color: '#4DCB73',
+                    color: '#23B899',
                     width: 2,
-                    shadowColor: 'rgba(77,203,115,0.88)',
-                    shadowBlur: 10,
-                    shadowOffsetY: 3
                 },
                 markPoint: {
                     data: [
@@ -169,10 +195,10 @@ var chartsParam = {
                             type: 'max',
                             name: '最大值',
                             symbol: 'circle',
-                            symbolSize: 12,
+                            symbolSize: 6,
                             itemStyle: {
-                                color: '#fff',
-                                borderColor: '#4DCB73',
+                                color: '#23B899',
+                                borderColor: '#fff',
                                 borderWidth: 2,
                             },
                             label: {
@@ -180,6 +206,21 @@ var chartsParam = {
                             }
                         },
                     ]
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color: 'rgba(35, 184, 153, 0.45)' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'rgba(35, 184, 153, 0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
                 },
                 data: []
             },
@@ -189,15 +230,13 @@ var chartsParam = {
                 smooth: true,
                 showSymbol: false,
                 symbol: 'circle',
+                symbolSize: 6,
                 itemStyle: {
-                    color: '#FACC14',
+                    color: '#FF5F58',
                 },
                 lineStyle: {
-                    color: '#FACC14',
+                    color: '#FF5F58',
                     width: 2,
-                    shadowColor: 'rgba(250,204,20,0.88)',
-                    shadowBlur: 13,
-                    shadowOffsetY: 1
                 },
                 markPoint: {
                     data: [
@@ -205,10 +244,10 @@ var chartsParam = {
                             type: 'max',
                             name: '最大值',
                             symbol: 'circle',
-                            symbolSize: 12,
+                            symbolSize: 6,
                             itemStyle: {
-                                color: '#fff',
-                                borderColor: '#FACC14',
+                                color: '#FF5F58',
+                                borderColor: '#fff',
                                 borderWidth: 2,
                             },
                             label: {
@@ -216,6 +255,21 @@ var chartsParam = {
                             }
                         },
                     ]
+                },
+                areaStyle: {
+                    color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                        colorStops: [{
+                            offset: 0, color: 'rgba(255, 95, 88, 0.45)' // 0% 处的颜色
+                        }, {
+                            offset: 1, color: 'rgba(255, 95, 88, 0)' // 100% 处的颜色
+                        }],
+                        global: false // 缺省为 false
+                    }
                 },
                 data: []
             },
