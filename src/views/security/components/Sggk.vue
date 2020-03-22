@@ -61,11 +61,11 @@
                         <el-col class="gk-total-p-3 gk-sw-p">{{ssswrs}}<span>人</span></el-col>
                         <el-col class="gk-total-p-1">同比
                             <i class="el-icon-caret-top num-top"></i>
-                            <span class="num-top">{{sgzs_tb}}%</span>
+                            <span class="num-top">{{ssswrs_tb}}%</span>
                         </el-col>
                         <el-col class="gk-total-p-1">环比
                             <i class="el-icon-caret-bottom num-bottom"></i>
-                            <span class="num-bottom">{{sgzs_hb}}%</span>
+                            <span class="num-bottom">{{ssswrs_hb}}%</span>
                         </el-col>
                     </div>
                 </div>
@@ -107,23 +107,49 @@
                 ssswrs: 0,//伤亡人数
                 sgzs_tb: "-",//事故总数同比
                 sgzs_hb: "-",//事故总数环比
-                swrs_tb: "-",//伤亡人数同比
-                swrs_hb: "-",//伤亡人数环比
+                ssswrs_tb: "-",//伤亡人数同比
+                ssswrs_hb: "-",//伤亡人数环比
                 ybsg: 0,//一般事故
                 jysg: 0,//简易事故
                 kcsg: 0,//快撤事故
                 swrs: 0,//死亡人数
                 ssrs: 0,//受伤人数
-                ybsg_per: 0,//一般事故同比
-                jysg_per: 0,//简易事故同比
-                kcsg_per: 0,//快撤事故同比
-                swrs_per: 0,//死亡人数同比
-                ssrs_per: 0,//受伤人数同比
+                ybsg_per: "-",//一般事故同比
+                jysg_per: "-",//简易事故同比
+                kcsg_per: "-",//快撤事故同比
+                swrs_per: "-",//死亡人数同比
+                ssrs_per: "-",//受伤人数同比
             }
         },
         methods: {
+            tb(time) {
+                if (time != this.$publicMethods.getMonthStr()) {
+                    time = time - 100
+                    return [time + "01", time + "31"]
+                } else {
+                    time = time - 100
+                    return [time + "01", "" + time + this.$publicMethods.getDate()[2]]
+                }
+            },
+            hb(time) {
+                if (time != this.$publicMethods.getMonthStr()) {
+                    time = time - 1
+                    if (time % 100 == 0) {
+                        time = time - 100 + 12
+                    }
+                    return [time + "01", time + "31"]
+                } else {
+                    time = time - 1
+                    if (time % 100 == 0) {
+                        time = time - 100 + 12
+                    }
+                    return [time + "01", "" + time + this.$publicMethods.getDate()[2]]
+                }
+            },
             /*事故概况-事故总数、一般、简易、快撤*/
             getAccBasic1(time, type) {
+                this.sgzs = 0//事故总数
+                this.ssswrs = 0//伤亡人数
                 this.ybsg = 0//一般事故
                 this.swrs = 0//死亡人数
                 this.jysg = 0//简易事故
@@ -131,8 +157,13 @@
                 this.kcsg = 0//快撤事故
                 this.sgzs_tb = "-"//事故总数同比
                 this.sgzs_hb = "-"//事故总数环比
-                this.swrs_tb = "-"//伤亡人数同比
-                this.swrs_hb = "-"//伤亡人数环比
+                this.ssswrs_tb = "-"//伤亡人数同比
+                this.ssswrs_hb = "-"//伤亡人数环比
+                this.ybsg_per = "-"//一般事故同比
+                this.jysg_per = "-"//简易事故同比
+                this.kcsg_per = "-"//快撤事故同比
+                this.swrs_per = "-"//死亡人数同比
+                this.ssrs_per = "-"//受伤人数同比
                 esApi.searchESProxy({
                     "index": "事故20",
                     "type": "doc",
@@ -149,6 +180,54 @@
                             this.kcsg = result[i]["doc_count"]
                         }
                     }
+                    this.getAccBasic1_tb(time, type)
+                    this.getAccBasic1_hb(time, type)
+                })
+            },
+            /*事故概况(同比)-事故总数、一般、简易、快撤*/
+            getAccBasic1_tb(time, type) {
+                let times = this.tb(time)
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk1_tbhb(times, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]["model"]["buckets"]
+                    let tb = 0
+                    for (let i = 0; i < result.length; i++) {
+                        tb += result[i]["doc_count"]
+                        if (result[i]["key"] == "简易事故") {
+                            this.jysg_per = ((this.jysg - result[i]["doc_count"]) / result[i]["doc_count"] * 100).toFixed(0)
+                        } else if (result[i]["key"] == "一般事故") {
+                            this.ybsg_per = ((this.ybsg - result[i]["doc_count"]) / result[i]["doc_count"] * 100).toFixed(0)
+                        } else {
+                            this.kcsg_per = ((this.kcsg - result[i]["doc_count"]) / result[i]["doc_count"] * 100).toFixed(0)
+                        }
+                    }
+                    if (tb != 0) {
+                        this.sgzs_tb = ((this.sgzs - tb) / tb * 100).toFixed(0)
+                    }
+                })
+            },
+            /*事故概况(环比)-事故总数、一般、简易、快撤*/
+            getAccBasic1_hb(time, type) {
+                let times = this.hb(time)
+                if (time % 100 == 0) {
+                    time = time - 100 + 12
+                }
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk1_tbhb(times, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]["model"]["buckets"]
+                    let hb = 0
+                    for (let i = 0; i < result.length; i++) {
+                        hb += result[i]["doc_count"]
+                    }
+                    if (hb != 0) {
+                        this.sgzs_hb = ((this.sgzs - hb) / hb * 100).toFixed(0)
+                    }
                 })
             },
             /*事故总数-伤亡人数*/
@@ -162,6 +241,49 @@
                     this.swrs = result["swrs"]["value"] / 1
                     this.ssrs = result["ssrs"]["value"] / 1
                     this.ssswrs = this.swrs + this.ssrs
+                    this.getAccBasic2_tb(time, type)
+                    this.getAccBasic2_hb(time, type)
+                })
+            },
+            /*事故总数(同比)-伤亡人数*/
+            getAccBasic2_tb(time, type) {
+                let times = this.tb(time)
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk2_tbhb(times, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]
+                    let swrs = result["swrs"]["value"] / 1
+                    let ssrs = result["ssrs"]["value"] / 1
+                    let ssswrs = swrs + ssrs
+                    if (swrs != 0) {
+                        this.swrs_per = ((this.swrs - swrs) / swrs * 100).toFixed(0)
+                    }
+                    if (ssrs != 0) {
+                        this.ssrs_per = ((this.ssrs - ssrs) / ssrs * 100).toFixed(0)
+                    }
+                    if (ssswrs != 0) {
+                        this.ssswrs_tb = ((this.ssswrs - ssswrs) / ssswrs * 100).toFixed(0)
+                    }
+                })
+            },
+            /*事故总数(环比)-伤亡人数*/
+            getAccBasic2_hb(time, type) {
+                let times = this.hb(time)
+                if (time % 100 == 0) {
+                    time = time - 100 + 12
+                }
+                esApi.searchESProxy({
+                    "index": "事故20",
+                    "type": "doc",
+                    "jsonCommand": esJson.sggk2_tbhb(times, type)
+                }).then(res => {
+                    let result = res["data"]["aggregations"]
+                    let ssswrs = result["swrs"]["value"] / 1 + result["ssrs"]["value"] / 1
+                    if (ssswrs != 0) {
+                        this.ssswrs_hb = ((this.ssswrs - ssswrs) / ssswrs * 100).toFixed(0)
+                    }
                 })
             }
         }

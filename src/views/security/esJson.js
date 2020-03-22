@@ -240,6 +240,78 @@ const esJson = {
                 }
             }
         }
-    }
+    },
+    /*事故概况-一般事故、简易事故、快撤事故tb\hb*/
+    sggk1_tbhb: (time, type) => {
+        return {
+            "query": {
+                "bool": {
+                    "must": esJson.searchParamtbhb(time, type)
+                }
+            },
+            "size": 0,
+            "aggs": {
+                "model": {
+                    "terms": {
+                        "order": {
+                            "_count": "desc"
+                        },
+                        "size": "999",
+                        "field": "clcx"
+                    }
+                }
+            }
+        }
+    },
+    /*事故概况-死亡人数、受伤人数tb\hb*/
+    sggk2_tbhb: (time, type) => {
+        return {
+            "query": {
+                "bool": {
+                    "must": esJson.searchParamtbhb(time, type)
+                }
+            },
+            "size": 0,
+            "aggs": {
+                "swrs": {
+                    "sum": {
+                        "field": "swrs7"
+                    }
+                },
+                "ssrs": {
+                    "sum": {
+                        "field": "ssrs7"
+                    }
+                }
+            }
+        }
+    },
+    /*查询条件tbhb*/
+    searchParamtbhb: (time, type) => {
+        const organizationNumber = localStorage.getItem('v3_organizationNumber')
+        let param = [
+            {
+                "range": {
+                    "sj_ymd": {
+                        "gte": time[0],
+                        "lte": time[1]
+                    }
+                }
+            },
+            {
+                "term": {
+                    "qlbs": "1"
+                }
+            }
+        ]
+        if (organizationNumber != "320500") {
+            param.push({
+                "term": {
+                    "dddm": organizationNumber
+                }
+            })
+        }
+        return param
+    },
 }
 export default esJson
