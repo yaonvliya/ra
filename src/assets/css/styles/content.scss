@@ -1,1 +1,90 @@
 /*右侧主体内容部分样式*/
+.right-content {
+  width: calc(100% - 250px);
+  height: 100%;
+}
+
+.analysis-panel {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(194, 193, 211, 0.73);
+  transition: all 0.3s ease;
+
+  .clickBtn {
+    position: absolute;
+    z-index: 49;
+    left: -24px;
+    top: calc(50% - 40px);
+    width: 24px;
+    height: 80px;
+    background: #4B5774;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .analysis-panel-tabs-select {
+    padding: 0 px2rem(17) px2rem(17);
+  }
+}
+
+.analysis-panel .el-tabs__item {
+  height: px2rem(49);
+  line-height: px2rem(49);
+  font-size: px2rem(16);
+  width: 150px;
+  text-align: center;
+  padding: 0;
+  color: #4B5774;
+}
+
+.analysis-panel .el-tabs__item.is-active {
+  color: #387DFF;
+}
+
+.analysis-panel .el-tabs__active-bar {
+  background-color: #387DFF;
+}
+
+.analysis-panel .el-tabs__nav-wrap::after {
+  background-color: #ECECEC;
+}
+
+.analysis-panel .el-form-item__label {
+  line-height: 30px;
+  font-size: px2rem(12);
+  color: #6B6F70;
+}
+
+.analysis-panel .el-form-item {
+  margin-bottom: px2rem(12);
+}
+
+.analysis-panel .el-input__inner {
+  height: 30px;
+  line-height: 30px;
+  font-size: px2rem(12);
+  color: #4B5774;
+}
+
+.analysis-panel .el-form-item__content {
+  line-height: 30px;
+  font-size: px2rem(12);
+}
+
+.analysis-panel .el-select .el-input .el-select__caret {
+  font-size: px2rem(10);
+  color: #3397EA;
+}
+
+.analysis-panel .el-input__icon {
+  line-height: 30px;
+}
+
+.analysis-panel .el-input--prefix .el-input__inner {
+  padding-right: 18px;
+}

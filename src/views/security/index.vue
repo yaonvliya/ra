@@ -182,28 +182,28 @@
         .analysis-scope-1 {
             position: absolute;
             z-index: 50;
-            top: 22px;
-            left: calc(21% + 22px);
+            top: px2rem(22);
+            left: calc(21% + 1.14vw);
             border-radius: 2px;
             box-shadow: 0 1px 3px #BCBCBC;
-            padding: 10px 0px;
+            padding: px2rem(10) 0px;
             background: #fff;
             @include flex-xlyc();
 
             .scope-col {
-                padding: 0 13px;
+                padding: 0 px2rem(13);
                 border-right: 1px dashed rgba(130, 145, 169, 0.25);
                 cursor: pointer;
                 @include flex-xlyc();
 
                 img {
-                    width: 11px;
-                    height: 11px;
-                    margin-right: 6px;
+                    width: px2rem(11);
+                    height: px2rem(11);
+                    margin-right: px2rem(6);
                 }
 
                 p {
-                    font-size: 12px;
+                    font-size: px2rem(12);
                     color: #4B5774;
                     white-space: nowrap;
                 }
@@ -220,24 +220,24 @@
             }
 
             .dw-icon {
-                font-size: 12px;
+                font-size: px2rem(12);
                 color: #FFC811;
-                margin-right: 7px;
+                margin-right: px2rem(7);
             }
 
             .other-icon {
-                font-size: 12px;
+                font-size: px2rem(12);
                 color: #7C8196;
-                margin-right: 7px;
+                margin-right: px2rem(7);
             }
         }
 
         .analysis-scope-2 {
             position: absolute;
             z-index: 50;
-            top: 22px;
-            right: calc(21% + 22px);
-            height: 40px;
+            top: px2rem(22);
+            right: calc(21% + 1.14vw);
+            height: px2rem(40);
             border-radius: 2px;
             box-shadow: 0 3px 6px rgba(194, 193, 211, 0.6);
             background: #fff;
@@ -245,9 +245,9 @@
 
             .zq {
                 height: 100%;
-                width: 70px;
+                width: px2rem(70);
                 color: #fff;
-                font-size: 13px;
+                font-size: px2rem(13);
                 @include flex-xcyc();
                 background-image: linear-gradient(to bottom, #679CF6, #4072EE);
             }
@@ -256,18 +256,18 @@
         .analysis-scope-3 {
             position: absolute;
             z-index: 50;
-            bottom: calc(33.33% + 12px);
-            right: calc(21% + 22px);
-            height: 40px;
+            bottom: calc(33.33% + 1.28vh);
+            right: calc(21% + 1.14vw);
+            height: px2rem(40);
             @include flex-xlyc();
         }
 
         .analysis-scope-4 {
             position: absolute;
             z-index: 50;
-            bottom: calc(33.33% + 12px);
-            left: calc(21% + 22px);
-            padding: 7px 8px;
+            bottom: calc(33.33% + 1.28vh);
+            left: calc(21% + 1.14vw);
+            padding: px2rem(7) px2rem(8);
             border-radius: 2px;
             background: rgba(255, 255, 255, 0.9);
 
@@ -276,9 +276,9 @@
             }
 
             .legend-block {
-                width: 13px;
-                height: 18px;
-                margin-right: 6px;
+                width: px2rem(13);
+                height: px2rem(18);
+                margin-right: px2rem(6);
             }
 
             .legend-block-1 {
@@ -298,7 +298,7 @@
             }
 
             .legend-p {
-                font-size: 11px;
+                font-size: px2rem(11);
                 color: #4B5774;
             }
         }
@@ -310,30 +310,30 @@
 
     .areaDropdown, .timeDropdown {
         color: #4B5774;
-        font-size: 12px;
+        font-size: px2rem(12);
         white-space: nowrap;
     }
 
     .timeDropdown {
-        width: 150px !important;
+        width: px2rem(150) !important;
     }
 
     .mapDropdownItem {
         li {
             color: #4B5774;
-            font-size: 12px;
+            font-size: px2rem(12);
         }
     }
 
     .map-checkbox {
-        height: 40px;
-        line-height: 40px;
-        padding: 0 13px;
+        height: px2rem(40);
+        line-height: px2rem(40);
+        padding: 0 px2rem(13);
         border-radius: 2px;
         background: rgba(255, 255, 255, 0.9);
 
         .el-checkbox__label {
-            font-size: 12px;
+            font-size: px2rem(12);
             color: #4B5774;
         }
     }

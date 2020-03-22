@@ -184,6 +184,6 @@
     }
 
     .radio-list > .el-radio__label {
-        font-size: 11px;
+        font-size: px2rem(11);
     }
 </style>

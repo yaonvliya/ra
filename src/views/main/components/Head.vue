@@ -76,65 +76,50 @@
         }
 
         .logo {
-            height: 4.27vh;
-            margin: 0 0.36vw 0 1.3vw;
+            height: px2rem(40);
+            margin: 0 px2rem(7) 0 px2rem(25);
         }
 
         .title {
-            font-size: 0.13rem;
+            font-size: px2rem(26);
             color: #fff;
             text-shadow: 1px 1px 3px #23449D;;
         }
 
-        .police {
-            height: 3.2vh;
-            border-radius: 50%;
-        }
-
-        .police-name {
-            height: 3.2vh;
-            line-height: 3.2vh;
-            font-size: 0.06rem;
-            padding: 0 0.05vw;
-            margin-right: 0.05vw;
-            border-right: 1px solid #fff;
-            text-align: center;
-        }
-
         .menu {
-            min-width: 9.22vw;
-            height: 4.05vh;
+            min-width: px2rem(177);
+            height: px2rem(38);
             border-radius: 200px;
-            margin-right: 0.88vw;
+            margin-right: px2rem(17);
             background-color: rgba(26, 106, 206, 0.5);
             @include flex-xlyc();
 
             .module-now {
                 color: #FFFFFF;
-                font-size: 0.09rem;
+                font-size: px2rem(18);
                 width: calc(100% - 2.39vw);
                 text-align: center;
             }
 
             img {
-                width: 2.39vw;
-                height: 4.9vh;
+                width: px2rem(46);
+                height: px2rem(46);
             }
         }
 
         .miniM {
             position: absolute;
             z-index: 99;
-            top: 6.08vh;
-            right: 17px;
-            padding: 1.38vh 0 !important;
-            width: 9.375vw;
+            top: px2rem(57);
+            right: px2rem(17);
+            padding: px2rem(12) 0 !important;
+            width: px2rem(180);
             background: #ffffff;
             box-shadow: 0px 3px 6px rgba(194, 193, 211, 0.73);
             border-radius: 4px;
 
             .module-name {
-                font-size: 0.07rem;
+                font-size: px2rem(14);
                 line-height: px2rem(40);
                 padding: 0 px2rem(10);
                 color: #4B5774;
@@ -163,9 +148,9 @@
             }
 
             .module-icon {
-                width: 20px;
-                height: 20px;
-                margin: 0 10px 0 15px;
+                width: px2rem(14);
+                height: px2rem(14);
+                margin: 0 px2rem(10) 0 px2rem(15);
             }
         }
     }

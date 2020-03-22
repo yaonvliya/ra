@@ -1,20 +1,19 @@
 <template>
     <div class="content">
         <s-sidebar :list="items"></s-sidebar>
-        <!--地图-->
-        <RaMap></RaMap>
+
+        <!--右侧-->
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import RaMap from "components/RaMap/index.vue"
     import sSidebar from '@/components/Sidebar'
     import menu_icon from '@/assets/images/menu_2.png';
 
     export default {
         name: "areaManage",
         components: {
-            RaMap,
             sSidebar,
         },
         data() {
@@ -22,83 +21,83 @@
                 items: [
                     {
                         icon: "el-icon-menu",
-                        index: 'securitySituation',
+                        index: 'areaAnalysis',
                         title: '分析研判',
                         subs: [
                             {
                                 icon: '',
-                                index: 'sgRegionAnalysis',
+                                index: 'areaAnalysisAccident',
                                 title: '事故分析',
                             },
                             {
                                 icon: '',
-                                index: 'wfRegionAnalysis',
+                                index: 'areaAnalysisIllegal',
                                 title: '违法分析',
                             },
                             {
                                 icon: '',
-                                index: 'jqRegionAnalysis',
+                                index: 'areaAnalysisWarning',
                                 title: '警情查询',
                             },
                             {
                                 icon: '',
-                                index: 'spaceAreaAnalysis',
+                                index: 'areaAnalysisUserDefined',
                                 title: '自定义区域研判',
                             }
                         ]
                     },
                     {
                         icon: '',
-                        index: 'regionAnalysis',
+                        index: 'areaSpot',
                         title: '黑点管理',
                         subs: [
                             {
                                 icon: '',
-                                index: 'sgRegionAnalysis',
-                                title: '事故研判',
+                                index: 'areaSpotSituation',
+                                title: '黑点概况',
                             },
                             {
                                 icon: '',
-                                index: 'wfRegionAnalysis',
-                                title: '违法研判',
+                                index: 'areaSpotReport',
+                                title: '手动上报',
                             },
                             {
                                 icon: '',
-                                index: 'jqRegionAnalysis',
-                                title: '警情研判',
+                                index: 'areaSpotAdminister',
+                                title: '黑点治理',
                             },
                             {
                                 icon: '',
-                                index: 'spaceAreaAnalysis',
-                                title: '自定义区域研判',
+                                index: 'areaSpotQuery',
+                                title: '黑点查询',
                             }
                         ]
                     },
 
                     {
                         icon: '',
-                        index: 'roadAnalysis',
+                        index: 'areaHidden',
                         title: '隐患管理',
                         subs: [
                             {
                                 icon: '',
-                                index: 'sgRoadAnalysis',
-                                title: '事故研判',
+                                index: 'areaHiddenSituation',
+                                title: '隐患概况',
                             },
                             {
                                 icon: '',
-                                index: 'wfRoadAnalysis',
-                                title: '违法研判',
+                                index: 'areaHiddenReport',
+                                title: '隐患上报',
                             },
                             {
                                 icon: '',
-                                index: 'jqRoadAnalysis',
-                                title: '警情研判',
+                                index: 'areaHiddenAdminister',
+                                title: '隐患治理',
                             },
                             {
                                 icon: '',
-                                index: 'spaceRoadAnalysis',
-                                title: '自定义起止点研判',
+                                index: 'areaHiddenQuery',
+                                title: '隐患查询',
                             }
                         ]
                     },
@@ -113,6 +112,10 @@
         position: relative;
         width: 100%;
         height: 100%;
-        @include flex-xl()
+        @include flex-xl();
     }
+</style>
+
+<style lang="scss">
+    @import "../../assets/css/styles/content.scss";
 </style>
