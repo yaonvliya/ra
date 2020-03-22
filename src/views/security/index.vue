@@ -9,16 +9,16 @@
                 <i class="iconfont dingwei dw-icon"/>
                 <el-dropdown class="areaDropdown" trigger="click" @command="chooseArea">
                     <span class="el-dropdown-link">
-                        {{area}}<i class="el-icon-arrow-down el-icon--right"></i>
+                        {{area.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown" class="mapDropdownItem">
-                        <el-dropdown-item v-for="(item,index) in areas" :key="index" :command=item.name>{{item.name}}
+                        <el-dropdown-item v-for="(item,index) in areas" :key="index" :command="index">{{item.name}}
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </el-col>
             <el-col class="scope-col" v-for="(item,index) in roads" :key="index" @click.native="chooseType(index)"
-                    :class="index == roadIndex?'onThisRoad':''">
+                    :class="index == roadIndex?'onThisRoad':''" v-show=isType>
                 <i :class=item.icon class="other-icon"></i>
                 <p>{{item.name}}</p>
             </el-col>
@@ -122,34 +122,46 @@
         },
         data() {
             return {
-                areas: [{name: "全市"}, {name: "虎丘区"}, {name: "姑苏区"}, {name: "太湖度假区"},],//分析的区域
-                area: "全市",//当前选择区域
+                areas: [{name: "全市", value: ""}, {name: "虎丘大队", value: "320591"}, {name: "姑苏大队", value: "320518"}, {
+                    name: "太湖度假区大队",
+                    value: "320593"
+                },],//分析的区域
+                area:{name: "全市", value: ""},//当前选择区域
                 roads: [{name: "高速公路", icon: "iconfont gaosu"}, {name: "城市快速路", icon: "iconfont kuaisu"}, {
                     name: "地面道路",
                     icon: "iconfont land"
                 }],//分析的道路类型
-                roadIndex: 0,//分析的道路类型选中
+                roadIndex: -1,//分析的道路类型选中
+                isType: true,
                 time: this.$publicMethods.getMonthStr(),//周期
                 mapList: [""],//专题图
             }
         },
         methods: {
             chooseArea(command) {//选择当前分析区域
-                this.area = command
+                this.area = this.areas[command]
+                if (this.areas[command].value != "") {
+                    this.isType = false
+                }else{
+                    this.roadIndex = -1
+                    this.isType = true
+                }
+                this.search()
             },
 
             chooseType(i) {//选择分析的道路类型
                 this.roadIndex = i
+                this.search()
             },
             changeTime() {
                 this.search()
             },
             search() {
-                this.$refs.sggk.getAccBasic1(this.time, "")
-                this.$refs.sggk.getAccBasic2(this.time, "")
-                this.$refs.sgqs_yjxx.search(this.time, "")
-                this.$refs.qyaq.getAreaSafe(this.time, "")
-                this.$refs.dlaq.getRoadSafe(this.time, "")
+                this.$refs.sggk.getAccBasic1(this.time, {area:this.area.value,road:this.roadIndex})
+                this.$refs.sggk.getAccBasic2(this.time, {area:this.area.value,road:this.roadIndex})
+                this.$refs.sgqs_yjxx.search(this.time, {area:this.area.value,road:this.roadIndex})
+                this.$refs.qyaq.getAreaSafe(this.time, {area:this.area.value,road:this.roadIndex})
+                this.$refs.dlaq.getRoadSafe(this.time, {area:this.area.value,road:this.roadIndex})
                 this.$refs.yyaq_claq_jsyaq.search(this.time)
             }
         },
@@ -259,7 +271,7 @@
             border-radius: 2px;
             background: rgba(255, 255, 255, 0.9);
 
-            >div {
+            > div {
                 @include flex-xlyc();
             }
 
