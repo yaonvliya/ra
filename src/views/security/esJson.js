@@ -318,12 +318,26 @@ const esJson = {
                 }
             }
         ]
-        if (organizationNumber != "320500") {
+        if (organizationNumber != "320500") {//大队身份
             param.push({
                 "term": {
                     "dddm": organizationNumber
                 }
             })
+        }else if(type.area!=""){//支队身份，选择某大队
+            param.push({
+                "term": {
+                    "dddm": type.area
+                }
+            })
+        }else{//支队身份选择支队
+            if(type.road == 0){//高速
+
+            }else if(type.road == 1){//快速路
+
+            }else if(type.road == 2){//地面道路
+
+            }
         }
         return param
     },
