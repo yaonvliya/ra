@@ -26,23 +26,33 @@ export const router = new Router({
                 },
                 {
                     path: '/area',
+                    redirect: '/area/areaAnalysisAccident',
                     name: 'area',
                     component: resolve => require(['../views/area'], resolve),
                     meta: {title: '区域安全管理'},
                     children: [
                         {
-                            path: '/area',
-                            name: 'area',
-                            component: resolve => require(['../views/area'], resolve),
-                            meta: {title: '区域安全管理事故分析'},
+                            path: '/area/areaAnalysisAccident',
+                            name: 'areaAnalysisAccident',
+                            component: resolve => require(['../views/area/components/AreaAnalysisAccident'], resolve),
+                            meta: {title: '区域分析研判事故分析'},
                         },
                     ]
                 },
                 {
                     path: '/road',
+                    redirect: '/road/roadAnalysisAccident',
                     name: 'road',
                     component: resolve => require(['../views/road'], resolve),
                     meta: {title: '道路安全管理'},
+                    children: [
+                        {
+                            path: '/road/roadAnalysisAccident',
+                            name: 'roadAnalysisAccident',
+                            component: resolve => require(['../views/road/components/RoadAnalysisAccident'], resolve),
+                            meta: {title: '道路分析研判事故分析'},
+                        },
+                    ]
                 },
             ]
         }

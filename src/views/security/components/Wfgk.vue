@@ -38,13 +38,13 @@
 
 <style lang="scss" scoped>
     .col-body {
-        height: calc(100% - 49px);
-        padding: 13px 10px 34px 19px;
+        height: calc(100% - 5.23vh);
+        padding: px2rem(13) px2rem(10) px2rem(34) px2rem(19);
 
         .wfgk-head {
             height: 25%;
-            margin-bottom: 20px;
-            padding: 0 16px 0 7px;
+            margin-bottom: px2rem(20);
+            padding: 0 px2rem(16) 0 px2rem(7);
             @include flex-xlryc();
 
             .el-col {
@@ -52,7 +52,7 @@
             }
 
             .num {
-                font-size: 24px;
+                font-size: px2rem(24);
                 font-weight: bold;
             }
 
@@ -69,21 +69,21 @@
             }
 
             .name {
-                font-size: 12px;
+                font-size: px2rem(12);
                 color: #97A4B2;
             }
         }
 
         .wfgk-head > .el-col:nth-child(1) {
-            padding-left: 8px;
+            padding-left: px2rem(8);
         }
 
         .wfgk-head > .el-col:nth-child(2) {
-            padding-left: 20px;
+            padding-left: px2rem(20);
         }
 
         .wfgk-head > .el-col:nth-child(3) {
-            padding-left: 20px;
+            padding-left: px2rem(20);
         }
     }
 </style>

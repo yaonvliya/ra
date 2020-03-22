@@ -171,69 +171,69 @@
 <style lang="scss" scoped>
     .col-body {
         width: 100%;
-        height: calc(100% - 49px);
-        padding: 8px 10px 23px 19px;
+        height: calc(100% - 5.23vh);
+        padding: px2rem(8) px2rem(10) px2rem(23) px2rem(19);
         @include flex-xlyc();
     }
 
     .col-body-left {
         height: 100%;
-        width: calc(50% - 4px);
-        margin-right: 8px;
+        width: calc(50% - 0.42vh);
+        margin-right: px2rem(8);
     }
 
     .col-body-right {
         height: 100%;
-        width: calc(50% - 4px);
+        width: calc(50% - 0.42vh);
     }
 
     .gk-total {
         height: 43%;
-        margin-bottom: 17px;
+        margin-bottom: px2rem(17);
         border-radius: 5px;
         color: #4B5774;
-        font-size: 11px;
+        font-size: px2rem(11);
         @include flex-xlyc();
 
         .gk-total-p-1 {
-            height: 17px;
-            line-height: 17px;
+            height: px2rem(17);
+            line-height: px2rem(17);
 
             i {
-                margin: 0 4px 0 6px;
+                margin: 0 px2rem(4) 0 px2rem(6);
             }
         }
 
         .gk-total-p-2 {
-            height: 40px;
-            line-height: 40px;
-            font-size: 30px;
+            height: px2rem(40);
+            line-height: px2rem(40);
+            font-size: px2rem(30);
             font-weight: bold;
         }
 
         .gk-total-p-2 span {
-            font-size: 12px;
+            font-size: px2rem(12);
             font-weight: normal;
-            margin-left: 3px;
+            margin-left: px2rem(3);
         }
 
         .gk-total-p-3 {
-            height: 40px;
-            line-height: 40px;
-            font-size: 30px;
+            height: px2rem(40);
+            line-height: px2rem(40);
+            font-size: px2rem(30);
             font-weight: bold;
         }
 
         .gk-total-p-3 span {
-            font-size: 12px;
+            font-size: px2rem(12);
             font-weight: normal;
-            margin-left: 3px;
+            margin-left: px2rem(3);
         }
     }
 
     .gk-total-line-a {
-        margin-right: 12px;
-        width: 3px;
+        margin-right: px2rem(12);
+        width: px2rem(3);
         height: 100%;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -241,8 +241,8 @@
     }
 
     .gk-total-line-b {
-        margin-right: 12px;
-        width: 3px;
+        margin-right: px2rem(12);
+        width: px2rem(3);
         height: 100%;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
@@ -250,41 +250,41 @@
     }
 
     .gk-total-right {
-        width: calc(100% - 15px);
+        width: calc(100% - 0.78vw);
     }
 
     .gk-list-body {
-        height: calc(57% - 17px);
+        height: calc(57% - 1.81vh);
     }
 
     .gk-list {
         position: relative;
         width: 100%;
         background-color: #f2f6fc;
-        height: 27px;
+        height: px2rem(27);
         border-radius: 0 1px 1px 0;
-        margin-bottom: 8px;
-        padding: 0 8px;
+        margin-bottom: px2rem(8);
+        padding: 0 px2rem(8);
         color: #4B5774;
         overflow: hidden;
         @include flex-xlyc();
 
         .gk-list-num {
-            font-size: 15px;
+            font-size: px2rem(15);
             font-weight: bold;
-            margin: 0 5px;
+            margin: 0 px2rem(5);
         }
 
         .list-percent {
             position: absolute;
             z-index: 51;
             top: 0;
-            right: 6px;
-            height: 27px;
+            right: px2rem(6);
+            height: px2rem(27);
             @include flex-xlyc();
 
             .per_num {
-                font-size: 11px;
+                font-size: px2rem(11);
                 font-weight: bold;
             }
         }
@@ -292,13 +292,13 @@
         .list-corner {
             position: absolute;
             z-index: 52;
-            top: -15px;
-            right: -17px;
-            padding: 15px 15px 6px 8px;
+            top: px2rem(-15);
+            right: px2rem(-17);
+            padding: px2rem(15) px2rem(15) px2rem(6) px2rem(8);
             border-radius: 40%;
             background: rgba(222, 223, 230, 1);
             color: #4B5774;
-            font-size: 10px;
+            font-size: px2rem(10);
             -webkit-transform: scale(0.5);
         }
     }

@@ -72,7 +72,7 @@
 
 <style lang="scss" scoped>
     .col-body {
-        height: calc(100% - 49px);
-        padding: 13px 13px 26px 16px;
+        height: calc(100% - 5.23vh);
+        padding: px2rem(13) px2rem(13) px2rem(26) px2rem(16);
     }
 </style>

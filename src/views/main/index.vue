@@ -33,10 +33,11 @@
         height: 100%;
 
         .sys-body {
-            width: calc(100% - 34px);
-            height: calc(100% - 80px);
+            width: calc(100% - 1.77vw);
+            height: calc(100% - 8.43vh);
             margin: 0 auto;
             /*background-color: #bbd8ff;*/
+            overflow: hidden;
         }
     }
 
