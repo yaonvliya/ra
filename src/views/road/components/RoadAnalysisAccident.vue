@@ -17,7 +17,7 @@
                             <el-form-item label="区域范围">
                                 <el-row>
                                     <el-col :span="11">
-                                        <el-select v-model="form.qyfw[0]" collapse-tags placeholder="请选择"
+                                        <el-select v-model="form.qyfw" collapse-tags placeholder="请选择"
                                                    class="width100">
                                             <el-option v-for="item in qyfwOptions1" :key="item.value"
                                                        :label="item.label"
@@ -72,8 +72,8 @@
                                         </el-select>
                                     </el-col>
                                     <el-col :span="2" class="select-line"><span style="opacity: 0">-</span></el-col>
-                                    <el-col :span="11">
-                                        <el-select v-model="form.fxcm[0]" collapse-tags placeholder="请选择"
+                                    <el-col :span="11" v-show="fxcm2_visible">
+                                        <el-select v-model="form.fxcm[1]" collapse-tags placeholder="请选择"
                                                    class="width100">
                                             <el-option v-for="item in fxcmOptions2" :key="item.value"
                                                        :label="item.label"
@@ -83,7 +83,7 @@
                                     </el-col>
                                 </el-row>
                             </el-form-item>
-                            <el-form-item label="长度范围">
+                            <el-form-item label="长度范围" v-show="cdfw_visible">
                                 <el-row>
                                     <el-col :span="11">
                                         <el-input v-model="form.cdfw[0]" placeholder=""
@@ -236,20 +236,20 @@
                 panelName: 'select',//条件结果显示
                 openPanel: true,//panel打开
                 load: false,//查询按钮
-
-
+                cdfw_visible: false,
+                fxcm2_visible: false,
                 /*管辖区域*/
                 qyfwOptions1: [
                     {
-                        value: 'a',
+                        value: 0,
                         label: '管辖区域'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '按行政区划'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '自定义区域'
                     }
                 ],
@@ -262,153 +262,153 @@
                 /*分析对象*/
                 fxdxOptions: [
                     {
-                        value: 'a',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '',
+                        value: 3,
                         label: '地面道路'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '城市快速路'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '高速公路'
                     }
                 ],
                 /*分析层面*/
                 fxcmOptions1: [
                     {
-                        value: 'a',
+                        value: 1,
                         label: '宏观层面'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '中观层面'
                     },
                     {
-                        value: '',
+                        value: 3,
                         label: '微观层面'
                     },
                     {
-                        value: '',
+                        value: 0,
                         label: '自定义长度'
                     }
                 ],
                 fxcmOptions2: [
                     {
-                        value: 'a',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '路口'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '路段'
                     }
                 ],
                 /*分析指标*/
                 fxzbOptions1: [
                     {
-                        value: 'a',
+                        value: 0,
                         label: '处理程序'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '事故类型'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '车辆属地'
                     }
                 ],
                 fxzbOptions2: [
                     {
-                        value: 'a',
+                        value: 0,
                         label: '事故总数'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '简易事故'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '一般事故（含死亡）'
                     }
                 ],
                 /*分析方法*/
                 fxffOptions: [
                     {
-                        value: 'a',
+                        value: 1,
                         label: '绝对数'
                     },
                     {
-                        value: '',
+                        value: 2,
                         label: '每公里密度数'
                     },
                     {
-                        value: '',
+                        value: 3,
                         label: '安全可提高空间'
                     }
                 ],
                 /*查询数量*/
                 cxslOptions: [
                     {
-                        value: 'a',
+                        value: 10,
                         label: '前10'
                     },
                     {
-                        value: '',
+                        value: 20,
                         label: '前20'
                     },
                     {
-                        value: '',
-                        label: '前30'
+                        value: 50,
+                        label: '前50'
                     }
                 ],
                 /*数据来源*/
                 sjlyOptions: [
                     {
-                        value: 'a',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '六合一系统'
                     }
                 ],
                 /*上报类型*/
                 sblxOptions: [
                     {
-                        value: 'a',
+                        value: -1,
                         label: '全部'
                     },
                     {
-                        value: '',
+                        value: 1,
                         label: '上报'
                     },
                     {
-                        value: '',
+                        value: 0,
                         label: '非上报'
                     }
                 ],
 
                 /*双向绑定的查询条件*/
                 form: {
-                    "qyfw": ["a", "a"],//区域范围
+                    "qyfw": 0,//区域范围
                     "sjfw": ["2020-03-01", "2020-03-22"],//时间范围
-                    "fxdx": "a",//分析对象
-                    "fxcm": ["a", "a"],//分析层面
-                    "cdfw": ["12", "14"],//长度范围
-                    "fxzb": ["a", "a"],//分析指标
-                    "fxff": "a",//分析方法
-                    "cxsl": "a",//查询数量
-                    "sjly": "a",//数据来源
-                    "sblx": "a",//上报类型
+                    "fxdx": -1,//分析对象
+                    "fxcm": [1, -1],//分析层面
+                    "cdfw": [12, 14],//长度范围
+                    "fxzb": [0, 0],//分析指标
+                    "fxff": 1,//分析方法
+                    "cxsl": 20,//查询数量
+                    "sjly": -1,//数据来源
+                    "sblx": -1,//上报类型
                 },
 
             };
@@ -423,6 +423,23 @@
             handleClick() {
 
             }
+        },
+        watch: {
+            'form.fxcm': {//分析层面控制
+                handler: function (val, oldval) {
+                    if (val[0] == 0) {
+                        this.cdfw_visible = true
+                    } else {
+                        this.cdfw_visible = false
+                    }
+                    if(val[0] == 3) {
+                        this.fxcm2_visible = true
+                    }else{
+                        this.fxcm2_visible = false
+                    }
+                }
+            },
+            deep: true
         }
     }
 </script>

@@ -50,22 +50,23 @@
                 drawTool: null,
                 measureTool: null,
                 selectTool: null,
-            }
-        },
-        methods: {
-            /*初始化地图*/
-            initMap() {
-                let options = {
+                mapOption:{
                     target: 'ra_map',
                     controlNames: [],
                     center: [120.819907, 31.317987],
-                    zoom: 10,
+                    zoom: 9,
                     maxZoom: 18,
                     minZoom: 9,
                     mapType: 'custom',
                     lyTyles: [config.layerType]
                 }
-                this.myMap = new TJMap(options)
+
+            }
+        },
+        methods: {
+            /*初始化地图*/
+            initMap() {
+                this.myMap = new TJMap(this.mapOption)
                 this.map = this.myMap.map
                 this.layerManager = new LayerManager({map: this.map})
                 this.drawTool = new DrawTool({map: this.map})
@@ -80,11 +81,6 @@
                     this.map = null;
                     this.myMap = null;
                 }
-            },
-            /*切换底图*/
-            changeBaseLayer(){
-                // let layer = this.myMap.baseLys["sz_online"]
-                // layer.setVisible(false)
             },
             /*加载图层-系统默认 业务serviceLayer、操作炳operateLayer、标注labelLayer、辅助supLayer*/
             initLayers() {
@@ -348,6 +344,10 @@
             /*清空测量*/
             clearMeasure() {
                 this.measureTool.clearMeasure();
+            },
+            /*像素转地图坐标*/
+            getCoordinateFromPixel(pixel){
+                return this.map.getCoordinateFromPixel(pixel)
             }
         },
         mounted: function () {
