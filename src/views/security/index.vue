@@ -306,6 +306,15 @@
         width: px2rem(150) !important;
     }
 
+    .timeDropdown .el-input__inner {
+        height: px2rem(40);
+        line-height: px2rem(40);
+    }
+
+    .timeDropdown .el-input__icon {
+        line-height: px2rem(40);
+    }
+
     .mapDropdownItem {
         li {
             color: #4B5774;

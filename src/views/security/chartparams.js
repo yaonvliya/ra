@@ -30,7 +30,7 @@ var chartsParam = {
             top: 15,
             left: 33,
             right: 33,
-            bottom: 64
+            bottom: 25
         },
         legend: {
             show: false,

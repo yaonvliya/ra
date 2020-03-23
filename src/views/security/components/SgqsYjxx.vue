@@ -17,7 +17,7 @@
                     <el-radio :label="3">星期</el-radio>
                 </el-radio-group>
             </div>
-            <div id="securityBottomLineChart" :style="{width: '100%', height: '100%'}" v-on-echart-resize></div>
+            <div id="securityBottomLineChart" :style="{width: '100%', height: 'calc(100% - 3.2vh)'}" v-on-echart-resize></div>
         </el-col>
     </el-col>
 </template>

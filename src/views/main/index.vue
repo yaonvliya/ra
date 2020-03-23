@@ -37,7 +37,6 @@
             height: calc(100% - 8.43vh);
             margin: 0 auto;
             /*background-color: #bbd8ff;*/
-            overflow: hidden;
         }
     }
 

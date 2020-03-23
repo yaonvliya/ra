@@ -10,13 +10,11 @@
         <el-col class="col-body">
             <div class="security-right-table">
                 <el-table
-                        :data="tableData"
-                        height="197">
+                        :data="tableData">
                     <el-table-column
                             align="center"
                             prop="name"
-                            label="大队"
-                            width="120">
+                            label="大队">
                     </el-table-column>
                     <el-table-column
                             align="center"

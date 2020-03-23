@@ -174,7 +174,7 @@
 */
 .tab-body {
   width: 100%;
-  height: calc(100% - 49px);
+  height: calc(100% - 5.23vh);
   padding: px2rem(14) px2rem(24) px2rem(20) px2rem(23);
 
   .radio-list {
@@ -196,6 +196,10 @@
 /*
 * 右侧表格
 */
+.security-right-table > .el-table {
+  font-size: px2rem(12);
+}
+
 .security-right-table > .el-table thead {
   color: #4B5774;
   font-size: px2rem(12);
@@ -204,10 +208,15 @@
 
 .security-right-table > .el-table th {
   background-color: #F4F5F9;
+  padding: px2rem(6) 0;
 }
 
 .security-right-table > .el-table tr {
   background-color: #ffffff;
+}
+
+.security-right-table > .el-table td {
+  padding: px2rem(6) 0;
 }
 
 .security-right-table > .el-table tr:nth-child(even) {
@@ -225,4 +234,19 @@
 .security-right-table > .el-table__body-wrapper {
   color: #172034;
   font-size: px2rem(13);
+}
+
+
+@media screen and (max-height: 1080px) {
+  .security-right-table .el-table__body-wrapper {
+    overflow-y: auto;
+    max-height: 155px;
+  }
+}
+
+@media screen and (max-height: 768px) {
+  .security-right-table .el-table__body-wrapper {
+    overflow-y: auto;
+    max-height: 90px;
+  }
 }

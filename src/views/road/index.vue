@@ -112,6 +112,7 @@
         width: 100%;
         height: 100%;
         @include flex-xl();
+        overflow: hidden;
     }
 </style>
 

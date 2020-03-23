@@ -15,13 +15,11 @@
         <el-col class="col-body">
             <div class="security-right-table">
                 <el-table
-                        :data="tableData"
-                        height="197">
+                        :data="tableData">
                     <el-table-column
                             align="center"
                             prop="name"
-                            :label="title"
-                            width="120">
+                            :label="title">
                     </el-table-column>
                     <el-table-column
                             align="center"

@@ -43,14 +43,21 @@
   align-items: $alignItems;
 }
 
-@mixin flex-xlcolyt($alignItems: flex-start,$flex-direction: column) {
+@mixin flex-xlcolyt($justifyContent: flex-start,$flex-direction: column) {
   display: flex;
   flex-direction: $flex-direction;
-  justify-content: $alignItems;
+  justify-content: $justifyContent;
 }
 
 @mixin flex-xl($justifyContent: flex-start) {
   display: flex;
+  justify-content: $justifyContent;
+}
+
+@mixin flex-xccolyc($justifyContent: center,$alignItems: center,$flex-direction: column) {
+  display: flex;
+  align-items: $alignItems;
+  flex-direction: $flex-direction;
   justify-content: $justifyContent;
 }
 
