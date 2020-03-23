@@ -28,11 +28,23 @@ const esJson = {
             })
         }else{//支队身份选择支队
             if(type.road == 0){//高速
-
+                param.push({
+                    "term": {
+                        "lh_lx": 1
+                    }
+                })
             }else if(type.road == 1){//快速路
-
+                param.push({
+                    "term": {
+                        "lh_lx": 2
+                    }
+                })
             }else if(type.road == 2){//地面道路
-
+                param.push({
+                    "term": {
+                        "lh_lx": 3
+                    }
+                })
             }
         }
         return param
@@ -332,11 +344,23 @@ const esJson = {
             })
         }else{//支队身份选择支队
             if(type.road == 0){//高速
-
+                param.push({
+                    "term": {
+                        "lh_lx": 1
+                    }
+                })
             }else if(type.road == 1){//快速路
-
+                param.push({
+                    "term": {
+                        "lh_lx": 2
+                    }
+                })
             }else if(type.road == 2){//地面道路
-
+                param.push({
+                    "term": {
+                        "lh_lx": 3
+                    }
+                })
             }
         }
         return param

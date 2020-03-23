@@ -42,10 +42,10 @@ const RaMap = {
         _this.clearMap()
     },
     /*maptool-切换底图*/
-    changeBaseLayer(_this){
+    mapTool_changeBaseLayer(_this){
         // let layer = _this.myMap.baseLys["sz_online"]
         // layer.setVisible(false)
-    },
+    }
 }
 
 export default RaMap

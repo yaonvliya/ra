@@ -344,6 +344,10 @@
             /*清空测量*/
             clearMeasure() {
                 this.measureTool.clearMeasure();
+            },
+            /*像素转地图坐标*/
+            getCoordinateFromPixel(pixel){
+                return this.map.getCoordinateFromPixel(pixel)
             }
         },
         mounted: function () {
